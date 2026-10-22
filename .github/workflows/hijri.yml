@@ -1,0 +1,32 @@
+name: Islamic date
+
+on:
+  schedule:
+    - cron: '0 5 * * *'    # 07:00 SAST
+    - cron: '30 17 * * *'  # 19:30 SAST (after sunset)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hijri
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch Islamic date
+        run: python3 scripts/fetch_hijri.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- hijri.json && git ls-files --error-unmatch hijri.json >/dev/null 2>&1; then
+            echo "hijri.json unchanged"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hijri.json
+          git commit -m "Update hijri.json"
+          git push
