@@ -37,8 +37,9 @@ header.top{background:linear-gradient(135deg,#0a1713 0%,#0f2a22 55%,#163d31 100%
 .brand .sub{font-size:.8rem;opacity:.85;margin-top:1px}
 .clock{text-align:right;font-variant-numeric:tabular-nums}
 .clock b{font-size:1.35rem;display:block;line-height:1.1}
-.clock span{font-size:.78rem;opacity:.85}
-.demo-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.6);color:#f3dc8c;font-size:.7rem;font-weight:600;letter-spacing:.03em;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:2px;text-transform:uppercase}
+.clock span{font-size:.78rem;opacity:.85;display:block}
+.clock .hijri{color:#e9d48a;opacity:1}
+.hj{color:var(--goldink);font-weight:600}
 /* nav */
 nav.tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:20;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 16px rgba(0,0,0,.05)}
 nav.tabs a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 2px 8px;text-decoration:none;color:var(--muted);font-size:.74rem;font-weight:600;min-height:58px;justify-content:center}
@@ -63,12 +64,12 @@ h2.title{font-size:1.3rem;margin:4px 0 4px}
 p.lead{margin:0 0 14px;color:var(--muted)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .spacer{flex:1}
-.btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 16px;min-height:46px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:8px 16px;min-height:44px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .btn:hover{background:#f7faf8}
 .btn.primary{background:linear-gradient(180deg,#d4ad34,#C9A227);border-color:#b08a14;color:#1c1503;box-shadow:0 1px 0 rgba(255,255,255,.4) inset}
 .btn.primary:hover{background:#B8860B;color:#140f02}
 .btn.danger{color:var(--a);border-color:#f2c5bf}
-.btn.big{min-height:60px;font-size:1.1rem;width:100%;border-radius:14px}
+.btn.big{min-height:48px;font-size:1rem;width:100%;border-radius:12px}
 .btn.sm{min-height:38px;padding:6px 12px;font-size:.88rem}
 .btn svg{width:18px;height:18px}
 .input{width:100%;border:1px solid #cbd6d1;border-radius:12px;padding:12px 14px;min-height:48px;background:#fff}
@@ -119,7 +120,6 @@ label.f{display:block;font-size:.85rem;font-weight:600;color:var(--muted);margin
 .pad-grid button{height:64px;border-radius:16px;border:1px solid var(--line);background:#fff;font-size:1.5rem;font-weight:600}
 .pad-grid button:active{background:var(--goldbg)}
 .lock{max-width:420px;margin:20px auto;text-align:center}
-.demo-pin{display:inline-block;background:var(--goldbg);color:var(--goldink);border:1px solid #e6cf7e;font-weight:700;padding:6px 14px;border-radius:99px;margin-top:6px}
 .shake{animation:shake .35s}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 /* dashboard */
 .counters{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
@@ -190,6 +190,7 @@ table.reg th.today{color:var(--g);background:var(--goldbg);box-shadow:inset 0 -3
 footer.foot{text-align:center;color:var(--muted);font-size:.78rem;margin-top:26px}
 footer.foot button{background:none;border:0;color:var(--g2);text-decoration:underline;font-weight:600;padding:8px}
 
+@media(max-width:480px){.brand .sub{display:none}.brand h1{font-size:1rem}.brand .tag{font-size:.74rem}.clock b{font-size:1.2rem}.clock span{font-size:.72rem}.logo{width:48px;height:48px}}
 /* take register */
 .hidden-always{display:none!important}
 .take-head{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
@@ -199,6 +200,7 @@ footer.foot button{background:none;border:0;color:var(--g2);text-decoration:unde
 .b-saved{background:var(--pbg);color:var(--p)}.b-unsaved{background:var(--lbg);color:var(--l)}.b-new{background:var(--nbg);color:var(--n)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0 10px}
 .legend-mini b{color:var(--ink)}
+@media(min-width:760px){.legend-mini{display:none}}
 @media(max-width:600px){.legend-mini{width:100%}}
 .take .tr{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 12px;border-top:1px solid var(--line)}
 .take .tr:first-child{border-top:0}
@@ -218,13 +220,13 @@ footer.foot button{background:none;border:0;color:var(--g2);text-decoration:unde
 .seg4 button[aria-checked=true].k-late{background:#9a5600;border-color:#9a5600;color:#fff}
 .seg4 button[aria-checked=true].k-absent{background:#b42318;border-color:#b42318;color:#fff}
 .seg4 button[aria-checked=true].k-leave{background:#3446a8;border-color:#3446a8;color:#fff}
-.savebar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:19;background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.07);padding:10px 14px}
+.savebar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:19;background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -4px 12px rgba(0,0,0,.05);padding:7px 14px}
 .sb-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.sb-counts{flex:1;min-width:0;font-size:.92rem;line-height:1.25}
-.sb-btn{min-height:54px;padding:0 22px;font-size:1.05rem;border-radius:14px;flex:none}
+.sb-counts{flex:1;min-width:0;font-size:.9rem;line-height:1.3}
+.sb-btn{min-height:42px;height:42px;padding:0 18px;font-size:.95rem;border-radius:11px;flex:none;align-self:center}
 .btn.primary.sb-btn.done,.btn.primary.sb-btn.done:hover{background:var(--pbg);border-color:#bfe3cc;color:var(--p);box-shadow:none}
-body.has-bar main{padding-bottom:180px}
-body.has-bar .toast{bottom:150px}
+body.has-bar main{padding-bottom:150px}
+body.has-bar .toast{bottom:128px}
 @media(min-width:860px){.savebar{bottom:0}body.has-bar main{padding-bottom:110px}body.has-bar .toast{bottom:96px}}
 .saved-banner{display:flex;gap:12px;align-items:center;background:#effaf3;border:1px solid #bfe3cc;border-left:5px solid var(--gold);border-radius:var(--r);padding:12px 14px;margin-top:12px;flex-wrap:wrap}
 .ok-ic.sm{width:42px;height:42px;margin:0;box-shadow:0 0 0 2px var(--gold)}.ok-ic.sm svg{width:24px;height:24px}
@@ -298,9 +300,9 @@ a.btn{text-decoration:none}
     <div class="brand">
       <h1 id="schoolName">Darul Uloom @ Darus Salaam</h1>
       <div class="tag" id="schoolTag">For Higher Islamic Education</div>
-      <div class="sub">Staff Attendance Register<span id="demoBadge" class="demo-badge" title="This register contains example data">Demo data</span></div>
+      <div class="sub">Staff Attendance Register</div>
     </div>
-    <div class="clock" aria-live="off"><b id="clockTime">--:--</b><span id="clockDate"></span></div>
+    <div class="clock" aria-live="off"><b id="clockTime">--:--</b><span id="clockDate"></span><span id="clockHijri" class="hijri"></span></div>
   </div>
 </header>
 <nav class="tabs" id="tabs" aria-label="Main">
@@ -318,7 +320,7 @@ a.btn{text-decoration:none}
 <script>
 (function(){
 "use strict";
-var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='boarding-v4';
+var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='polish-v5';
 var TEACHERS=["Ahmed Jeewa","Asaamu","Asad Mohammed Msiza","Fahima Mayet","Imraan Joosub","Khalid Ayob","Mahmood Desai","Mohamed Elsayed Atia","Mohamed Naeem Nombewu","Mohammad Hoosein Akhalwaya","Muhammad Ashraf E Dockrat","Muhammad Binyamin","Muhammed Desai","Muhammed S dockrat","Nafisa Amod","Nazreen Dada","Samir Mall","Sumaiya Cassim","Yusuf Suliman","Zubair Ismail"];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -351,13 +353,38 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function initials(n){var w=n.trim().split(/\s+/);return (w[0][0]+(w.length>1?w[w.length-1][0]:(w[0][1]||''))).toUpperCase()}
 function firstName(n){return n.split(' ')[0]}
 function avatar(t,cls,dot){return '<span class="avatar '+(cls||'')+'" style="background:'+COLORS[t.id%COLORS.length]+'" aria-hidden="true">'+esc(initials(t.name))+(dot?'<i style="background:'+dot+'"></i>':'')+'</span>'}
+var HMON=['Muharram','Safar','Rabi al-Awwal','Rabi al-Thani','Jumada al-Ula','Jumada al-Akhirah','Rajab','Shaban','Ramadan','Shawwal','Dhu al-Qadah','Dhu al-Hijjah'];
+var HFMT=(function(){var cs=['islamic-umalqura','islamic','islamic-civil'];for(var i=0;i<cs.length;i++){try{var f=new Intl.DateTimeFormat('en-u-ca-'+cs[i],{timeZone:'UTC',day:'numeric',month:'numeric',year:'numeric'});if(f.resolvedOptions().calendar===cs[i])return f}catch(e){}}return null})();
+var HFEED=null;try{HFEED=JSON.parse(localStorage.getItem('hijriFeed'))}catch(e){}
+function intlH(s,adj){if(!HFMT)return null;var d=pd(s);d.setUTCDate(d.getUTCDate()+(adj||0));d.setUTCHours(12);var o={};HFMT.formatToParts(d).forEach(function(x){o[x.type]=x.value});return {d:+o.day,m:+o.month,y:parseInt(o.year,10)}}
+function dayDiff(a,b){return Math.round((pd(b)-pd(a))/864e5)}
+function feedOk(){var J=HFEED;return J&&J.gregorian&&J.day&&J.year&&J.monthIndex>=1&&J.monthIndex<=12}
+function hijriFromFeed(s){
+  if(!feedOk())return null;var J=HFEED,k=dayDiff(J.gregorian,s);
+  if(k===0)return {d:J.day,m:J.monthIndex,y:J.year};
+  if(k<0||k>3)return null;
+  for(var dd=-3;dd<=3;dd++){var p=intlH(J.gregorian,dd);if(p&&p.d===J.day&&p.m===J.monthIndex&&p.y===J.year)return intlH(s,dd)}
+  return null;
+}
+function hparts(s){return hijriFromFeed(s)||intlH(s,(S&&S.settings&&S.settings.hijriAdj)||0)}
+function hijri(s){var h=hparts(s);return h?h.d+' '+HMON[h.m-1]+' '+h.y:''}
+function hijriRange(a,b){var x=hparts(a),y=hparts(b);if(!x||!y)return '';if(x.y===y.y)return x.d+' '+HMON[x.m-1]+' – '+y.d+' '+HMON[y.m-1]+' '+y.y;return hijri(a)+' – '+hijri(b)}
+function loadHijriFeed(){
+  if(!/^https?:/.test(location.protocol)||!window.fetch)return;
+  fetch('hijri.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){
+    if(!j||!j.gregorian||!j.day||!j.monthIndex)return;
+    var o=JSON.stringify(HFEED);HFEED={gregorian:j.gregorian,day:+j.day,monthIndex:+j.monthIndex,year:+j.year,fetchedAt:j.fetchedAt||''};
+    localStorage.setItem('hijriFeed',JSON.stringify(HFEED));
+    if(JSON.stringify(HFEED)!==o){header();if(!$('#modalRoot').innerHTML&&view.name!=='settings'){var y=window.scrollY;route();window.scrollTo(0,y)}}
+  }).catch(function(){});
+}
 function keeper(){return S.settings.keeper||'Register keeper'}
 function prevSchoolDay(d){for(var i=0;i<14;i++){d=addDays(d,-1);if(isSchoolDay(d))return d}return null}
 
 /* ---------- storage ---------- */
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
 function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.teachers)seed();var d=defaults();for(var k in d)if(S.settings[k]==null)S.settings[k]=d[k];S.saved=S.saved||{};if(!S.boarding){seedBoarding();save()}}
-function defaults(){return {schoolName:DEF_NAME,tagline:DEF_TAG,keeper:'Joosy',start:'07:30',late:'07:45',days:[1,2,3,4,5],selfSignIn:false,pinOn:false,requirePin:false,adminPin:'1234',trackOut:false}}
+function defaults(){return {schoolName:DEF_NAME,tagline:DEF_TAG,keeper:'Joosy',start:'07:30',late:'07:45',days:[1,2,3,4,5],selfSignIn:false,pinOn:false,requirePin:false,adminPin:'1234',trackOut:false,hijriAdj:0}}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function seed(){
   var r=rng(20261022), t0=today();
@@ -418,8 +445,7 @@ function header(){
   $('#logoImg').alt=(S.settings.schoolName||'School')+' logo';
   document.title=(S.settings.schoolName||'School')+' · Staff Register';
   $('#clockTime').textContent=n.time;
-  $('#clockDate').textContent=fmtDateW(n.date);
-  $('#demoBadge').classList.toggle('hidden',!S.demo);
+  $('#clockDate').textContent=fmtDateW(n.date);$('#clockHijri').textContent=hijri(n.date);
   $('#tabSignin').classList.toggle('hidden',!S.settings.selfSignIn);
 }
 function pwa(){
@@ -445,7 +471,7 @@ function route(){
   ({boarding:renderBoarding,take:renderTake,signin:renderSignin,today:renderToday,register:renderRegister,settings:renderSettings,teacher:renderTeacher})[v]();
   window.scrollTo(0,0);
 }
-function footer(){return '<footer class="foot no-print">'+(S.demo?'Showing example data for demonstration · ':'')+'Times shown in South Africa time (SAST)'+(S.demo?' · <button data-act="reset">Reset demo</button>':'')+'</footer>'}
+function footer(){return ''}
 
 /* ---------- Take register ---------- */
 function makeDraft(d){
@@ -463,7 +489,7 @@ function countsText(c){var a=[c.present+' present'];if(c.late)a.push(c.late+' la
 function renderTake(){
   var d=view.takeDate||today();
   if(!view.draft||view.draft.d!==d)view.draft=makeDraft(d);
-  $('#main').innerHTML='<div class="take-head"><div><h2 class="title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Take register <span id="tBadge"></span></h2><p class="lead" style="margin:0">'+fmtDateW(d)+(d===today()?' · today':'')+'</p></div><div class="spacer"></div>'+
+  $('#main').innerHTML='<div class="take-head"><div><h2 class="title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Take register <span id="tBadge"></span></h2><p class="lead" style="margin:0">'+fmtDateW(d)+' · <span class="hj">'+hijri(d)+'</span></p></div><div class="spacer"></div>'+
    '<div class="datebar"><button class="btn sm" data-act="tday" data-d="-1" aria-label="Previous school day">‹</button><input type="date" class="input date-in" id="tdate" value="'+d+'" max="'+today()+'" aria-label="Register date"><button class="btn sm" data-act="tday" data-d="1" aria-label="Next school day"'+(d>=today()?' disabled':'')+'>›</button>'+(d!==today()?'<button class="btn sm" data-act="ttoday">Today</button>':'')+'</div></div>'+
    (isSchoolDay(d)?'':'<div class="notice" style="margin-top:10px">'+DOW[dow(d)]+' is not a school day in Settings. You can still capture a register.</div>')+
    '<div id="tBanner"></div>'+
@@ -476,8 +502,7 @@ function renderTake(){
 function drawTake(){
   var d=view.draft.d, it=view.draft.items, sv=S.saved[d], dt=dirty(), c=draftCounts();
   $('#tBadge').innerHTML=sv?(dt?'<span class="badge b-unsaved">Unsaved changes</span>':'<span class="badge b-saved">✓ Saved</span>'):'<span class="badge b-new">Not saved yet</span>';
-  $('#tBanner').innerHTML=sv&&!dt?'<div class="saved-banner" role="status"><div class="ok-ic sm">'+CHECK+'</div><div style="flex:1;min-width:200px"><b>Register saved for '+fmtDateW(d)+' at '+sv.at.slice(-5)+'</b><div class="small muted">by '+esc(sv.by||keeper())+' · '+countsText(c)+' · tap any chip to make a change</div></div><div class="row"><button class="btn wa" data-act="share">'+WA+'Share summary</button><button class="btn" data-act="copySum">Copy</button></div></div>'
-    :(sv&&dt?'<div class="notice" style="margin-top:10px">You have changed a saved register. Tap <b>Save changes</b> to keep them – each change is logged.</div>':'');
+  $('#tBanner').innerHTML=sv&&!dt?'<div class="saved-banner" role="status"><div class="ok-ic sm">'+CHECK+'</div><div style="flex:1;min-width:200px"><b>Register saved for '+fmtDateW(d)+' at '+sv.at.slice(-5)+'</b><div class="small muted">by '+esc(sv.by||keeper())+' · '+countsText(c)+'</div></div><div class="row"><button class="btn wa" data-act="share">'+WA+'Share summary</button><button class="btn" data-act="copySum">Copy</button></div></div>':'';
   $('#tList').innerHTML=S.teachers.map(function(x){
     var o=it[x.id], det='';
     if(o.st==='late')det='Late · arrived '+o.in;else if(o.st==='absent'||o.st==='leave')det=(o.st==='leave'?'Leave':'Absent')+' · '+esc(o.reason)+(o.note?' – '+esc(o.note):'');
@@ -506,7 +531,7 @@ function openLateSheet(id){
   modal(X+'<div class="row" style="gap:12px">'+avatar(x)+'<div><h3 style="margin:0">'+esc(x.name)+'</h3><div class="muted small">Late arrival · '+fmtDateW(d)+'</div></div></div>'+
    '<label class="f" for="lt">Arrival time</label><input class="input" type="time" id="lt" value="'+def+'" style="font-size:1.4rem;text-align:center">'+
    '<div class="quick">'+q.map(function(b){return '<button class="btn sm" data-act="qt" data-t="'+b[1]+'">'+b[0]+'<small class="muted tnum">'+b[1]+'</small></button>'}).join('')+'</div>'+
-   '<p class="muted small" style="margin:8px 0 0">Quick times are from school start ('+s+').</p>'+
+   ''+
    '<div class="row" style="margin-top:16px;flex-wrap:nowrap"><button class="btn" data-act="close" style="flex:1">Cancel</button><button class="btn primary" data-act="okLate" data-id="'+id+'" style="flex:2" autofocus>Mark late</button></div>');
 }
 function openReasonSheet(id,st){
@@ -553,12 +578,12 @@ function summaryText(d){
   S.teachers.forEach(function(x){var st=statusOf(d,x.id),r=rec(d,x.id)||{};if(c[st]==null)return;c[st]++;
     if(st==='late')L.late.push('• '+x.name+' – '+(r.in||''));
     if(st==='absent'||st==='leave')L[st].push('• '+x.name+' – '+(r.reason||'')+(r.note?' ('+r.note+')':''))});
-  var t=['*'+S.settings.schoolName+'*','Staff register – '+fmtDateW(d),'','✅ Present: '+c.present+'   ⏰ Late: '+c.late,'❌ Absent: '+c.absent+'   🗓️ Leave: '+c.leave,'('+S.teachers.length+' staff)'];
+  var t=['*'+S.settings.schoolName+'*','Staff register – '+fmtDateW(d),hijri(d),'','✅ Present: '+c.present+'   ⏰ Late: '+c.late,'❌ Absent: '+c.absent+'   🗓️ Leave: '+c.leave,'('+S.teachers.length+' staff)'];
   if(L.late.length){t.push('','*Late*');t.push.apply(t,L.late)}
   if(L.absent.length){t.push('','*Absent*');t.push.apply(t,L.absent)}
   if(L.leave.length){t.push('','*On leave*');t.push.apply(t,L.leave)}
   if(!c.late&&!c.absent&&!c.leave)t.push('','All staff present – alhamdulillah.');
-  var sv=S.saved[d];t.push('','Captured by '+(sv&&sv.by||keeper())+(sv?' at '+sv.at.slice(-5):'')+' (SAST)');
+  var sv=S.saved[d];t.push('','Captured by '+(sv&&sv.by||keeper())+(sv?' at '+sv.at.slice(-5):'')+'');
   return t.join('\n');
 }
 function openShare(){
@@ -611,7 +636,7 @@ function doSign(id,dir){
 /* ---------- Lock ---------- */
 function renderLock(){
   view.pin='';
-  $('#main').innerHTML='<div class="lock card pad" style="border-top:4px solid var(--gold)">'+logoTag('logo lg')+'<div class="muted small" style="margin:10px 0 2px;font-weight:600">'+esc(S.settings.schoolName)+'</div><h2 class="title">Enter PIN to open</h2><p class="muted" style="margin:0">The register is protected with a PIN.</p><div class="demo-pin">Demo PIN: 1234</div>'+
+  $('#main').innerHTML='<div class="lock card pad" style="border-top:4px solid var(--gold)">'+logoTag('logo lg')+'<div class="muted small" style="margin:10px 0 2px;font-weight:600">'+esc(S.settings.schoolName)+'</div><h2 class="title">Enter PIN</h2>'+
   '<div class="pin-dots" id="dots"><span></span><span></span><span></span><span></span></div>'+
   '<div class="pad-grid">'+[1,2,3,4,5,6,7,8,9].map(function(k){return '<button data-act="key" data-k="'+k+'">'+k+'</button>'}).join('')+'<button data-act="key" data-k="c" style="font-size:1rem">Clear</button><button data-act="key" data-k="0">0</button><button data-act="key" data-k="b" aria-label="Delete" style="font-size:1.2rem">⌫</button></div></div>';
 }
@@ -631,7 +656,7 @@ function renderToday(){
   var rows=S.teachers.map(function(x){var st=statusOf(d,x.id);if(counts[st]!=null)counts[st]++;return{x:x,st:st,r:rec(d,x.id)}});
   var ctr=[['present','Present'],['late','Late'],['absent','Absent'],['leave','On leave'],['notyet','Not captured']];
   var sv=S.saved[d];
-  $('#main').innerHTML='<div class="dash-head"><div><h2 class="title">'+(isT?'Today':'Day view')+'</h2><p class="lead" style="margin:0">'+fmtDateW(d)+' · start '+S.settings.start+', late after '+S.settings.late+'</p></div><div class="spacer"></div>'+
+  $('#main').innerHTML='<div class="dash-head"><div><h2 class="title">'+(isT?'Today':'Day view')+'</h2><p class="lead" style="margin:0">'+fmtDateW(d)+' · <span class="hj">'+hijri(d)+'</span></p><p class="small muted" style="margin:2px 0 0">Start '+S.settings.start+' · late after '+S.settings.late+'</p></div><div class="spacer"></div>'+
    '<div class="row no-print"><input type="date" class="input date-in" id="dpick" value="'+d+'" max="'+today()+'" aria-label="Choose date">'+(isT?'':'<button class="btn" data-act="gotoday">Today</button>')+(S.settings.requirePin?'<button class="btn sm" data-act="lock">Lock</button>':'')+'</div></div>'+
    (sv?'<div class="small muted" style="margin-top:8px">✓ Register saved at '+sv.at.slice(-5)+' by '+esc(sv.by||keeper())+' · <a href="#take" data-act="openTake" data-d="'+d+'" style="color:var(--g2);font-weight:600">Open register</a></div>'
      :(isSchoolDay(d)?'<div class="notice" style="margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1">The register for '+(isT?'today':fmtDateW(d))+' has not been taken yet.</span><button class="btn sm primary" data-act="openTake" data-d="'+d+'">Take register</button></div>':''))+
@@ -660,7 +685,7 @@ function openEdit(id,d){
    '<div id="fLate"><label class="f" for="eIn">Arrival time</label><input class="input" type="time" id="eIn" value="'+(r.in||fromMin(toMin(S.settings.late)+15))+'"></div>'+
    '<div id="fOut" class="'+(S.settings.trackOut?'':'hidden-always')+'"><label class="f" for="eOut">Sign-out time</label><input class="input" type="time" id="eOut" value="'+(r.out||'')+'"></div>'+
    '<div id="fRe"><label class="f" for="eRe">Reason</label><select class="input" id="eRe">'+REASONS.map(function(o){return '<option'+(r.reason===o?' selected':'')+'>'+o+'</option>'}).join('')+'</select><label class="f" for="eNote">Note</label><input class="input" id="eNote" maxlength="120" value="'+esc(r.note||'')+'"></div>'+
-   '<label class="f" for="eWhy">Reason for change (saved to audit trail)</label><input class="input" id="eWhy" maxlength="120" placeholder="e.g. Arrived early, was on gate duty">'+
+   '<label class="f" for="eWhy">Reason for change</label><input class="input" id="eWhy" maxlength="120" placeholder="e.g. Arrived early, was on gate duty">'+
    (r.audit&&r.audit.length?'<details style="margin-top:12px"><summary class="small muted">Change history ('+r.audit.length+')</summary><ul class="small" style="padding-left:18px">'+r.audit.map(function(a){return '<li>'+esc(a.at)+' – '+esc(a.text)+'</li>'}).join('')+'</ul></details>':'')+
    '<div class="row" style="margin-top:16px;flex-wrap:nowrap"><button class="btn" data-act="close" style="flex:1">Cancel</button><button class="btn primary" data-act="saveEdit" style="flex:2">Save changes</button></div>');
   setMode(mode);
@@ -690,11 +715,11 @@ function renderRegister(){
   var head='<tr><th class="name" scope="col">Teacher</th>'+days.map(function(d){return '<th scope="col" class="'+(d===t?'today':'')+'">'+(+d.slice(8))+'<small>'+DOW[dow(d)].slice(0,2)+'</small></th>'}).join('')+'<th class="tot" title="Days present (incl. late)">P</th><th class="tot" title="Late arrivals">L</th><th class="tot">A</th><th class="tot">Lv</th><th class="tot">%</th></tr>';
   var body=S.teachers.map(function(x){var tt=totals(x.id,days);return '<tr><td class="name" title="'+esc(x.name)+'"><a href="#teacher/'+x.id+'">'+esc(x.name)+'</a></td>'+days.map(function(d){var st=statusOf(d,x.id),c=CODE[st],r=rec(d,x.id)||{};var tip=fmtDate(d)+': '+STATUS_LABEL[st]+(r.in?' '+r.in:'')+(r.reason?' ('+r.reason+')':'');return '<td title="'+esc(tip)+'">'+(c?'<span class="c c-'+c+'">'+c+'</span>':'<span class="c c-N">'+(d>t?'':'·')+'</span>')+'</td>'}).join('')+'<td class="tot">'+tt.P+'</td><td class="tot">'+tt.L+'</td><td class="tot">'+tt.A+'</td><td class="tot">'+tt.Lv+'</td><td class="tot">'+(tt.pct==null?'–':tt.pct)+'</td></tr>'}).join('');
   var counted=days.filter(function(d){return S.saved[d]}).length;
-  $('#main').innerHTML='<div class="print-only ph">'+logoTag('')+'<div class="pt"><h1>'+esc(S.settings.schoolName)+'</h1>'+(S.settings.tagline?'<div class="ptag">'+esc(S.settings.tagline)+'</div>':'')+'<p>Staff Attendance Register – '+title+'</p></div><p class="small">Captured by '+esc(keeper())+'<br>Printed '+stamp()+' (SAST)'+(S.demo?' · DEMO DATA':'')+'</p></div>'+
-   '<div class="dash-head no-print"><div><h2 class="title">Monthly register</h2><p class="lead" style="margin:0">'+days.length+' school days · '+counted+' registers saved</p></div><div class="spacer"></div>'+
+  $('#main').innerHTML='<div class="print-only ph">'+logoTag('')+'<div class="pt"><h1>'+esc(S.settings.schoolName)+'</h1>'+(S.settings.tagline?'<div class="ptag">'+esc(S.settings.tagline)+'</div>':'')+'<p>Staff Attendance Register – '+title+(days.length?' · '+hijriRange(days[0],days[days.length-1]):'')+'</p></div><p class="small">Captured by '+esc(keeper())+'<br>Printed '+stamp()+'</p></div>'+
+   '<div class="dash-head no-print"><div><h2 class="title">Monthly register</h2><p class="lead" style="margin:0">'+days.length+' school days · '+counted+' registers saved'+(days.length?' · <span class="hj">'+hijriRange(days[0],days[days.length-1])+'</span>':'')+'</p></div><div class="spacer"></div>'+
    '<div class="monthnav"><button class="btn sm" data-act="month" data-d="-1" aria-label="Previous month">‹</button><b>'+title+'</b><button class="btn sm" data-act="month" data-d="1" aria-label="Next month">›</button></div></div>'+
    '<div class="row no-print" style="margin:12px 0"><button class="btn primary" data-act="print"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print register</button><button class="btn" data-act="csv">Export CSV</button><button class="btn" data-act="csv2">Detailed CSV</button></div>'+
-   '<div class="legend"><span><span class="c c-P">P</span>Present</span><span><span class="c c-L">L</span>Late (counted as present)</span><span><span class="c c-A">A</span>Absent</span><span><span class="c c-Lv">Lv</span>On leave</span><span><span class="c c-N">·</span>Not captured</span></div>'+
+   '<div class="legend"><span><span class="c c-P">P</span>Present</span><span><span class="c c-L">L</span>Late</span><span><span class="c c-A">A</span>Absent</span><span><span class="c c-Lv">Lv</span>On leave</span><span><span class="c c-N">·</span>Not captured</span></div>'+
    '<div class="reg-wrap"><table class="reg"><thead>'+head+'</thead><tbody>'+body+'</tbody></table></div>'+
    '<div class="print-only sig"><div>Principal signature</div><div>Name</div><div>Date</div></div>'+footer();
 }
@@ -736,20 +761,20 @@ function renderTeacher(){
 function sw(id,title,desc,on){return '<div class="switch"><div><b>'+title+'</b><div class="muted small">'+desc+'</div></div><input type="checkbox" id="'+id+'" aria-label="'+title+'"'+(on?' checked':'')+'></div>'}
 function renderSettings(){
   var s=S.settings;
-  $('#main').innerHTML='<h2 class="title">Settings</h2><p class="lead">Changes save automatically on this device.</p><div class="grid2"><div>'+
-   '<div class="card pad sec"><h3>School</h3><label class="f" for="sName">School name (shown in header and on printouts)</label><input class="input" id="sName" maxlength="80" value="'+esc(s.schoolName)+'"><label class="f" for="sTag">Tagline</label><input class="input" id="sTag" maxlength="100" value="'+esc(s.tagline||'')+'"><label class="f" for="sKeeper">Register keeper (name shown on saved registers)</label><input class="input" id="sKeeper" maxlength="40" value="'+esc(s.keeper||'')+'"></div>'+
+  $('#main').innerHTML='<h2 class="title">Settings</h2><p class="lead">Changes save automatically.</p><div class="grid2"><div>'+
+   '<div class="card pad sec"><h3>School</h3><label class="f" for="sName">School name</label><input class="input" id="sName" maxlength="80" value="'+esc(s.schoolName)+'"><label class="f" for="sTag">Tagline</label><input class="input" id="sTag" maxlength="100" value="'+esc(s.tagline||'')+'"><label class="f" for="sKeeper">Register keeper</label><input class="input" id="sKeeper" maxlength="40" value="'+esc(s.keeper||'')+'"></div>'+
    '<div class="card pad sec"><h3>School hours</h3><div class="row" style="flex-wrap:nowrap"><div style="flex:1"><label class="f" for="sStart">School starts</label><input class="input" type="time" id="sStart" value="'+s.start+'"></div><div style="flex:1"><label class="f" for="sLate">Late after</label><input class="input" type="time" id="sLate" value="'+s.late+'"></div></div>'+
+   '<label class="f" for="sHijri">Hijri date adjustment</label><select class="input" id="sHijri" style="max-width:220px">'+[-2,-1,0,1,2].map(function(v){return '<option value="'+v+'"'+((s.hijriAdj||0)===v?' selected':'')+'>'+(v>0?'+':'')+v+' day'+(Math.abs(v)===1?'':'s')+'</option>'}).join('')+'</select><div class="muted small" style="margin-top:4px">Today: '+hijri(today())+(hijriFromFeed(today())?' · Islamic date per Jamiat SA':'')+'</div>'+
    '<label class="f">School days</label><div class="days">'+[1,2,3,4,5,6,0].map(function(d){return '<label><input type="checkbox" data-day="'+d+'"'+(s.days.indexOf(d)>-1?' checked':'')+'> '+DOW[d]+'</label>'}).join('')+'</div></div>'+
-   '<div class="card pad sec"><h3>Demo data</h3><p class="muted small" style="margin:0 0 10px">'+(S.demo?'About 3 weeks of example registers captured by '+esc(keeper())+'. Today\'s register is left for you to take.':'Example data has been cleared.')+'</p><div class="row"><button class="btn" data-act="reset">Reset demo data</button><button class="btn danger" data-act="wipe">Clear all &amp; start fresh</button></div></div>'+
-   '</div><div>'+
-   '<div class="card pad sec"><h3>Register options</h3>'+sw('sTrackOut','Track sign-out times','Adds a “Signed out” button per teacher on the Today screen.',s.trackOut)+
-   sw('sSelf','Teachers sign themselves in','Adds a Sign-in tab where teachers tap their own name. Off when one person keeps the register.',s.selfSignIn)+
-   (s.selfSignIn?'<div style="border-left:3px solid var(--gold);padding-left:12px;margin:4px 0 8px">'+sw('sPin','Teacher PINs','Ask each teacher for a 4-digit PIN when signing in.',s.pinOn)+'<div id="pinList" class="'+(s.pinOn?'':'hidden')+'"><div class="pins">'+S.teachers.map(function(x){return '<div><input class="input" data-pin="'+x.id+'" inputmode="numeric" maxlength="4" value="'+x.pin+'" aria-label="PIN for '+esc(x.name)+'"><span>'+esc(x.name)+'</span></div>'}).join('')+'</div></div></div>':'')+
+      '</div><div>'+
+   '<div class="card pad sec"><h3>Register options</h3>'+sw('sTrackOut','Track sign-out times','Record when each teacher leaves.',s.trackOut)+
+   sw('sSelf','Teachers sign themselves in','Adds a Sign-in tab for teachers.',s.selfSignIn)+
+   (s.selfSignIn?'<div style="border-left:3px solid var(--gold);padding-left:12px;margin:4px 0 8px">'+sw('sPin','Teacher PINs','4-digit PIN per teacher.',s.pinOn)+'<div id="pinList" class="'+(s.pinOn?'':'hidden')+'"><div class="pins">'+S.teachers.map(function(x){return '<div><input class="input" data-pin="'+x.id+'" inputmode="numeric" maxlength="4" value="'+x.pin+'" aria-label="PIN for '+esc(x.name)+'"><span>'+esc(x.name)+'</span></div>'}).join('')+'</div></div></div>':'')+
    '</div>'+
-   '<div class="card pad sec"><h3>Security</h3>'+sw('sReqPin','Require PIN to open','Ask for a PIN when the app is opened on this device.',s.requirePin)+
+   '<div class="card pad sec"><h3>Security</h3>'+sw('sReqPin','Require PIN to open','Ask for a PIN when the app opens.',s.requirePin)+
    '<label class="f" for="sAdmin">PIN</label><input class="input" id="sAdmin" inputmode="numeric" maxlength="4" value="'+esc(s.adminPin)+'" style="max-width:140px;letter-spacing:.3em;text-align:center">'+(s.requirePin?'<div class="row" style="margin-top:12px"><button class="btn" data-act="lock">Lock now</button></div>':'')+'</div>'+
-   '<div class="card pad sec"><h3>Staff list</h3><p class="muted small" style="margin:0">'+S.teachers.length+' teachers. In the full version staff can be added, edited and archived here.</p></div>'+
-   '</div></div>'+footer();
+      '</div></div>'+
+   '<div class="card pad sec" style="margin-top:6px"><h3>Data</h3><div class="row" style="margin-top:8px"><button class="btn" data-act="reset">Reset data</button><button class="btn danger" data-act="wipe">Clear all records</button></div></div>';
 }
 function settingsChange(e){
   var el=e.target, s=S.settings, rerender=false;
@@ -759,6 +784,7 @@ function settingsChange(e){
   else if(el.id==='sStart'&&el.value)s.start=el.value;
   else if(el.id==='sLate'&&el.value)s.late=el.value;
   else if(el.dataset.day!=null)s.days=[].slice.call(document.querySelectorAll('[data-day]:checked')).map(function(c){return +c.dataset.day});
+  else if(el.id==='sHijri'){s.hijriAdj=+el.value;rerender=true}
   else if(el.id==='sTrackOut')s.trackOut=el.checked;
   else if(el.id==='sSelf'){s.selfSignIn=el.checked;rerender=true}
   else if(el.id==='sReqPin'){s.requirePin=el.checked;if(el.checked){adminOk=true;sessionStorage.setItem('adminOk','1')}rerender=true}
@@ -769,7 +795,7 @@ function settingsChange(e){
   save();header();toast('Saved');if(rerender){var y=window.scrollY;renderSettings();window.scrollTo(0,y)}
 }
 
-/* ---------- Boarding (sample learners) ---------- */
+/* ---------- Boarding ---------- */
 var LEARNERS=["Aadil Patel","Zaid Moosa","Ibrahim Khan","Yaseen Cassim","Hamza Bham","Mikaeel Essop","Uzair Laher","Ismail Vawda","Taahir Seedat","Muaaz Kajee","Ridwaan Hassim","Bilaal Sader","Abdullah Mia","Haroon Paruk","Luqmaan Docrat","Saalih Jassat","Faheem Asmal","Waseem Dawood","Junaid Bayat","Nabeel Ebrahim","Raees Kathrada","Shaheed Omar","Tariq Hendricks","Ziyaad Adams","Mujahid Salie","Fuad Davids","Imtiaz Jacobs","Aqeel Petersen","Riyaad Isaacs","Moosa Khumalo","Siddiq Mahomed","Yahya Ndlovu","Zakariyya Gani","Anas Valli","Sulaiman Lockhat","Ammaar Suleman"];
 var DORMS=['Dorm A','Dorm B','Dorm C'], RELS=['Father','Mother','Uncle','Brother','Grandparent','Guardian','Driver','Other'];
 var BST={in:'In',pass:'Out on pass',sick:'Sick bay',missing:'Missing'};
@@ -810,7 +836,7 @@ function renderBoarding(){
   var tab=view.arg||'roll';
   var tabs=[['roll','Night roll'],['passes','Leave passes'],['sick','Sick bay'],['kitchen','Kitchen count']];
   var od=outNow().filter(isOverdue).length;
-  $('#main').innerHTML='<div class="take-head"><div><h2 class="title" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">Boarding <span class="badge b-new">Sample learners</span></h2><p class="lead" style="margin:0">'+S.boarding.learners.length+' boarders · 3 dorms · '+outNow().length+' out on pass'+(od?' · <b style="color:var(--a)">'+od+' overdue</b>':'')+' · '+sickNow().length+' in sick bay</p></div></div>'+
+  $('#main').innerHTML='<div class="take-head"><div><h2 class="title" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">Boarding</h2><p class="lead" style="margin:0">'+S.boarding.learners.length+' boarders · 3 dorms · '+outNow().length+' out on pass'+(od?' · <b style="color:var(--a)">'+od+' overdue</b>':'')+' · '+sickNow().length+' in sick bay</p></div></div>'+
    '<div class="subtabs" role="tablist">'+tabs.map(function(t){return '<a role="tab" href="#boarding/'+t[0]+'" aria-selected="'+(tab===t[0])+'">'+t[1]+(t[0]==='passes'&&od?' <span class="dot-red">'+od+'</span>':'')+'</a>'}).join('')+'</div><div id="bBody"></div>'+footer();
   ({roll:bRoll,passes:bPasses,sick:bSick,kitchen:bKitchen}[tab]||bRoll)();
 }
@@ -820,8 +846,8 @@ function bDirty(){return view.bd&&JSON.stringify(view.bd.items)!==view.bd.base}
 function bRoll(){
   var d=view.bDate||today();if(!view.bd||view.bd.d!==d)view.bd=bMakeDraft(d);
   document.body.classList.add('has-bar');
-  $('#bBody').innerHTML='<div class="take-head" style="margin-top:4px"><div><b>Night roll call</b><span id="bBadge" style="margin-left:8px"></span><div class="muted small">'+fmtDateW(d)+' · roll at '+ROLL_TIME+'</div></div><div class="spacer"></div><div class="datebar"><button class="btn sm" data-bact="bday" data-d="-1" aria-label="Previous night">‹</button><input type="date" class="input date-in" id="bdate" value="'+d+'" max="'+today()+'" aria-label="Roll call date"><button class="btn sm" data-bact="bday" data-d="1" aria-label="Next night"'+(d>=today()?' disabled':'')+'>›</button></div></div>'+
-   '<div id="bBanner"></div><div class="tools"><button class="btn sm" data-bact="allIn">Mark all in</button><span class="spacer"></span><span class="legend-mini muted small"><b>In</b> · <b>Out</b> on pass · <b>Sick</b> bay · <b>Miss</b>ing</span></div><div id="bList"></div>'+
+  $('#bBody').innerHTML='<div class="take-head" style="margin-top:4px"><div><b>Night roll call</b><span id="bBadge" style="margin-left:8px"></span><div class="muted small">'+fmtDateW(d)+' · <span class="hj">'+hijri(d)+'</span></div></div><div class="spacer"></div><div class="datebar"><button class="btn sm" data-bact="bday" data-d="-1" aria-label="Previous night">‹</button><input type="date" class="input date-in" id="bdate" value="'+d+'" max="'+today()+'" aria-label="Roll call date"><button class="btn sm" data-bact="bday" data-d="1" aria-label="Next night"'+(d>=today()?' disabled':'')+'>›</button></div></div>'+
+   '<div id="bBanner"></div><div class="tools"><button class="btn sm" data-bact="allIn">Mark all in</button></div><div id="bList"></div>'+
    '<div class="savebar"><div class="sb-in"><div class="sb-counts tnum" id="bCounts"></div><button class="btn primary sb-btn" data-bact="bSave" id="bBtn">Save roll call</button></div></div>';
   $('#bdate').addEventListener('change',function(e){if(e.target.value)bChangeDate(e.target.value)});
   bDraw();
@@ -831,7 +857,7 @@ function bCountsTxt(c){var a=[c.in+' in'];if(c.pass)a.push(c.pass+' on pass');if
 function bDraw(){
   var B=S.boarding,d=view.bd.d,sv=B.rolls[d],dt=bDirty(),c=bCounts(),at=d===today()?nowDT():d+' '+ROLL_TIME;
   $('#bBadge').innerHTML=sv?(dt?'<span class="badge b-unsaved">Unsaved changes</span>':'<span class="badge b-saved">✓ Saved</span>'):'<span class="badge b-new">Not saved yet</span>';
-  $('#bBanner').innerHTML=sv&&!dt?'<div class="saved-banner" role="status"><div class="ok-ic sm">'+CHECK+'</div><div style="flex:1;min-width:200px"><b>Roll call saved for '+fmtDateW(d)+' at '+sv.at.slice(-5)+'</b><div class="small muted">by '+esc(sv.by)+' · '+bCountsTxt(c)+'</div></div></div>':(c.missing?'<div class="notice" style="margin-top:10px;background:var(--abg);color:#7a1a10"><b>'+c.missing+' learner'+(c.missing>1?'s':'')+' marked missing.</b> Follow the missing-learner procedure and inform the principal.</div>':'');
+  $('#bBanner').innerHTML=sv&&!dt?'<div class="saved-banner" role="status"><div class="ok-ic sm">'+CHECK+'</div><div style="flex:1;min-width:200px"><b>Roll call saved for '+fmtDateW(d)+' at '+sv.at.slice(-5)+'</b><div class="small muted">by '+esc(sv.by)+' · '+bCountsTxt(c)+'</div></div></div>':(c.missing?'<div class="notice" style="margin-top:10px;background:var(--abg);color:#7a1a10"><b>'+c.missing+' learner'+(c.missing>1?'s':'')+' marked missing.</b></div>':'');
   $('#bList').innerHTML=DORMS.map(function(dm){var ls=B.learners.filter(function(l){return l.dorm===dm});var dc=ls.filter(function(l){return view.bd.items[l.id]==='in'}).length;
     return '<div class="dorm-h"><b>'+dm+'</b><span class="muted small">'+dc+' of '+ls.length+' in</span></div><ul class="list card take">'+ls.map(function(l){
       var st=view.bd.items[l.id],det='',p=activePass(B,l.id,at),s=activeSick(B,l.id,at);
@@ -864,7 +890,7 @@ function openNewPass(){
    '<label class="f" for="pDest">Destination / reason</label><input class="input" id="pDest" maxlength="80" placeholder="e.g. Home – Lenasia (weekend)">'+
    '<div class="row" style="flex-wrap:nowrap"><div style="flex:3"><label class="f" for="pBy">Collected by</label><input class="input" id="pBy" maxlength="60" placeholder="Full name"></div><div style="flex:2"><label class="f" for="pRel">Relationship</label><select class="input" id="pRel">'+RELS.map(function(r){return '<option>'+r+'</option>'}).join('')+'</select></div></div>'+
    '<div class="row" style="flex-wrap:nowrap"><div style="flex:3"><label class="f" for="pDD">Expected back</label><input class="input" type="date" id="pDD" min="'+t+'" value="'+addDays(t,2)+'"></div><div style="flex:2"><label class="f" for="pDT">by</label><input class="input" type="time" id="pDT" value="17:00"></div></div>'+
-   '<label class="f" for="pPh">Parent WhatsApp number (sample – leave blank to pick a contact)</label><input class="input" id="pPh" inputmode="tel" placeholder="e.g. 082 000 0000 (sample)">'+
+   '<label class="f" for="pPh">Parent WhatsApp number</label><input class="input" id="pPh" inputmode="tel" placeholder="082 123 4567">'+
    '<div class="row" style="margin-top:16px;flex-wrap:nowrap"><button class="btn" data-act="close" style="flex:1">Cancel</button><button class="btn primary" data-bact="savePass" style="flex:2">Sign out</button></div>');
   $('#pL').addEventListener('change',function(){$('#pPh').value=L(+$('#pL').value).phone||''});
 }
@@ -885,7 +911,7 @@ function bPassesIfOpen(){if(view.name==='boarding')renderBoarding()}
 function bSick(){
   var B=S.boarding,cur=sickNow(),past=B.sick.filter(function(s){return s.cleared}).sort(function(a,b){return b.cleared.localeCompare(a.cleared)});
   $('#bBody').innerHTML='<div class="row" style="margin:4px 0 12px"><b style="flex:1">In sick bay now ('+cur.length+')</b><button class="btn primary" data-bact="newSick">+ Admit to sick bay</button></div>'+
-   (cur.length?'<div class="pass-grid">'+cur.map(function(s){var l=L(s.lid);return '<div class="card pad pass sick"><div class="row" style="gap:10px;flex-wrap:nowrap">'+bAvatar(l)+'<div style="flex:1"><b>'+esc(l.name)+'</b><div class="muted small">'+l.dorm+' · since '+fmtDT(s.in)+'</div></div><span class="chip s-late">Sick bay</span></div><dl class="pdl"><dt>Complaint</dt><dd>'+esc(s.complaint)+'</dd><dt>Action taken</dt><dd>'+esc(s.action)+'</dd><dt>Parent notified</dt><dd><label class="mini-sw"><input type="checkbox" data-sick-notify="'+s.id+'"'+(s.notified?' checked':'')+'> '+(s.notified?'Yes':'No')+'</label></dd></dl><div class="row"><button class="btn primary" style="flex:1" data-bact="clearSick" data-id="'+s.id+'">Cleared – back to dorm</button>'+waBtn(l,msgSick(s),'WhatsApp')+'</div></div>'}).join('')+'</div>':'<p class="muted">Sick bay is empty, alhamdulillah.</p>')+
+   (cur.length?'<div class="pass-grid">'+cur.map(function(s){var l=L(s.lid);return '<div class="card pad pass sick"><div class="row" style="gap:10px;flex-wrap:nowrap">'+bAvatar(l)+'<div style="flex:1"><b>'+esc(l.name)+'</b><div class="muted small">'+l.dorm+' · since '+fmtDT(s.in)+'</div></div><span class="chip s-late">Sick bay</span></div><dl class="pdl"><dt>Complaint</dt><dd>'+esc(s.complaint)+'</dd><dt>Action taken</dt><dd>'+esc(s.action)+'</dd><dt>Parent notified</dt><dd><label class="mini-sw"><input type="checkbox" data-sick-notify="'+s.id+'"'+(s.notified?' checked':'')+'> '+(s.notified?'Yes':'No')+'</label></dd></dl><div class="row"><button class="btn primary" style="flex:1" data-bact="clearSick" data-id="'+s.id+'">Cleared – back to dorm</button>'+waBtn(l,msgSick(s),'WhatsApp')+'</div></div>'}).join('')+'</div>':'<p class="muted">Sick bay is empty.</p>')+
    '<h3 style="margin:22px 0 8px;font-size:1rem">Sick bay log</h3><div class="card"><ul class="list">'+(past.length?past.map(function(s){var l=L(s.lid);return '<li class="li">'+bAvatar(l)+'<div class="who"><b>'+esc(l.name)+'</b><div class="times">'+esc(s.complaint)+' · '+esc(s.action)+'</div><div class="times">In '+fmtDT(s.in)+' · cleared '+fmtDT(s.cleared)+' · parent notified: '+(s.notified?'yes':'no')+'</div></div></li>'}).join(''):'<li class="li muted">No earlier entries</li>')+'</ul></div>';
 }
 function openNewSick(){var ids=sickNow().map(function(s){return s.lid}),outIds=outNow().map(function(p){return p.lid});
@@ -901,17 +927,17 @@ function kitchenCalc(){
 }
 function bKitchen(){
   var tm=addDays(today(),1),rows=kitchenCalc(),total=S.boarding.learners.length,sk=sickNow().length,dueBack=outNow().filter(function(p){return !isOverdue(p)&&p.due<=tm+' 18:30'});
-  $('#bBody').innerHTML='<div class="card pad" style="margin-top:4px"><div class="row"><div style="flex:1"><b>Tomorrow · '+fmtDateW(tm)+'</b><div class="muted small">Boarders expected at each meal</div></div><button class="btn" data-bact="copyKitchen">Copy for kitchen</button></div>'+
+  $('#bBody').innerHTML='<div class="card pad" style="margin-top:4px"><div class="row"><div style="flex:1"><b>Tomorrow · '+fmtDateW(tm)+'</b><div class="muted small">Boarders expected per meal</div></div><button class="btn" data-bact="copyKitchen">Copy for kitchen</button></div>'+
    '<div class="meals">'+rows.map(function(r){return '<div class="meal"><span>'+r.meal+'</span><b class="tnum">'+r.count+'</b><small class="muted">'+r.time+'</small></div>'}).join('')+'</div>'+
    '<h4 style="margin:16px 0 6px">How this is worked out</h4><ol class="logic"><li>Start with all <b>'+total+'</b> boarders.</li>'+
    rows.map(function(r){return '<li><b>'+r.meal+' ('+r.time+')</b>: '+total+(r.away.length?' − '+r.away.length+' away ('+r.away.map(function(a){return esc(L(a.p.lid).name)+(a.od?', overdue – not counted until signed in':', back '+fmtDT(a.p.due))}).join('; ')+')':'')+' = <b>'+r.count+'</b></li>'}).join('')+
    (dueBack.length?'<li>Due back before supper and counted: '+dueBack.map(function(p){return esc(L(p.lid).name)+' ('+fmtDT(p.due)+')'}).join(', ')+'.</li>':'')+
-   '<li>Learners in the sick bay ('+sk+') are counted – the kitchen may need light meals for them.</li></ol></div>';
+   '<li>Sick bay ('+sk+') included – light meals.</li></ol></div>';
 }
 function kitchenText(){var tm=addDays(today(),1),r=kitchenCalc();return '*'+school()+' – Kitchen count*\n'+fmtDateW(tm)+'\n\n'+r.map(function(x){return x.meal+' ('+x.time+'): '+x.count}).join('\n')+'\n\nSick bay: '+sickNow().length+' (light meals)\nFrom '+keeper()}
 function boardingCard(){
   var B=S.boarding,out=outNow(),od=out.filter(isOverdue).length,sk=sickNow().length,ro=B.rolls[today()],inN=B.learners.length-out.length-sk;
-  return '<div class="card pad bcard"><div class="row"><b style="flex:1">Boarding <span class="muted small" style="font-weight:500">· sample learners · '+(ro?'roll call saved '+ro.at.slice(-5):'tonight\'s roll not taken yet')+'</span></b><a class="btn sm" href="#boarding/roll">Open boarding</a></div><div class="bstats"><a href="#boarding/roll"><b>'+inN+'</b><span>In</span></a><a href="#boarding/passes"><b>'+out.length+'</b><span>Out on pass</span></a><a href="#boarding/passes" class="'+(od?'red':'')+'"><b>'+od+'</b><span>Overdue</span></a><a href="#boarding/sick"><b>'+sk+'</b><span>Sick bay</span></a></div></div>';
+  return '<div class="card pad bcard"><div class="row"><b style="flex:1">Boarding <span class="muted small" style="font-weight:500">· '+(ro?'roll call saved '+ro.at.slice(-5):'tonight\'s roll not taken yet')+'</span></b><a class="btn sm" href="#boarding/roll">Open boarding</a></div><div class="bstats"><a href="#boarding/roll"><b>'+inN+'</b><span>In</span></a><a href="#boarding/passes"><b>'+out.length+'</b><span>Out on pass</span></a><a href="#boarding/passes" class="'+(od?'red':'')+'"><b>'+od+'</b><span>Overdue</span></a><a href="#boarding/sick"><b>'+sk+'</b><span>Sick bay</span></a></div></div>';
 }
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-bact]');if(!b)return;var a=b.dataset.bact,id=b.dataset.id!=null?+b.dataset.id:null;
@@ -968,7 +994,7 @@ document.addEventListener('click',function(e){
     case 'csv':exportCSV(false);break;
     case 'csv2':exportCSV(true);break;
     case 'lock':adminOk=false;sessionStorage.removeItem('adminOk');route();toast('Locked');break;
-    case 'reset':if(confirm('Reset to fresh demo data? All changes on this device will be replaced.')){var s0=S.settings;seed();['schoolName','tagline','keeper'].forEach(function(k){S.settings[k]=s0[k]});save();view={};location.hash='#take';route();toast('Demo data reset')}break;
+    case 'reset':if(confirm('Reset all data to the original records? Changes on this device will be replaced.')){var s0=S.settings;seed();['schoolName','tagline','keeper'].forEach(function(k){S.settings[k]=s0[k]});save();view={};location.hash='#take';route();toast('Data reset')}break;
     case 'wipe':if(confirm('Clear ALL attendance data and start a real register from today?')){S.records={};S.saved={};S.demo=false;S.startDate=today();save();view={};route();toast('All data cleared')}break;
   }
 });
@@ -981,8 +1007,8 @@ document.addEventListener('keydown',function(e){
 window.addEventListener('beforeunload',function(e){if((view.name==='take'&&dirty())||(view.name==='boarding'&&bDirty())){e.preventDefault();e.returnValue=''}});
 window.addEventListener('hashchange',route);
 var lastDate;
-setInterval(function(){header();var d=today();if(lastDate&&d!==lastDate&&!$('#modalRoot').innerHTML&&!dirty()){view.draft=null;view.takeDate=null;route()}lastDate=d},10000);
-load();pwa();lastDate=today();route();
+setInterval(function(){header();if(new Date().getMinutes()%30===0&&new Date().getSeconds()<10)loadHijriFeed();var d=today();if(lastDate&&d!==lastDate&&!$('#modalRoot').innerHTML&&!dirty()){view.draft=null;view.takeDate=null;route()}lastDate=d},10000);
+load();pwa();lastDate=today();route();loadHijriFeed();
 })();
 </script>
 </body>
