@@ -238,6 +238,34 @@ body.has-bar .toast{bottom:150px}
 .reasons button{min-height:52px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:650;padding:6px}
 .reasons button.on{border-color:var(--g);background:var(--g3);color:var(--g);box-shadow:inset 0 0 0 1px var(--g)}
 .out-btn{border-color:#cdd8d3}
+
+/* boarding */
+a.btn{text-decoration:none}
+.subtabs{display:flex;gap:6px;overflow-x:auto;margin:12px 0 10px;padding-bottom:2px}
+.subtabs a{flex:none;text-decoration:none;color:var(--ink);font-weight:650;font-size:.9rem;padding:10px 14px;border-radius:99px;background:#fff;border:1px solid var(--line);min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.subtabs a[aria-selected=true]{background:var(--base);color:#fff;border-color:var(--base);box-shadow:inset 0 -3px 0 var(--gold)}
+.dot-red{background:var(--a);color:#fff;border-radius:99px;font-size:.72rem;padding:1px 7px}
+.dorm-h{display:flex;justify-content:space-between;align-items:baseline;margin:14px 2px 6px}
+.b4 button{font-size:.8rem}
+.seg4 button[aria-checked=true].kb-in{background:#16794a;border-color:#16794a;color:#fff}
+.seg4 button[aria-checked=true].kb-pass{background:#3446a8;border-color:#3446a8;color:#fff}
+.seg4 button[aria-checked=true].kb-sick{background:#9a5600;border-color:#9a5600;color:#fff}
+.seg4 button[aria-checked=true].kb-missing{background:#b42318;border-color:#b42318;color:#fff}
+.tr.b-pass{background:#f6f7ff}.tr.b-sick{background:#fffaf0}.tr.b-missing{background:#fdecea}
+@media(min-width:760px){.b4 button{min-width:70px}}
+.pass-grid{display:grid;gap:12px}@media(min-width:760px){.pass-grid{grid-template-columns:1fr 1fr}}
+.pass{border-left:5px solid var(--v)}.pass.overdue{border-left-color:var(--a);background:#fff8f7}.pass.sick{border-left-color:var(--l)}
+.pdl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0;font-size:.9rem}.pdl dt{color:var(--muted);font-weight:600}.pdl dd{margin:0}
+.mini-sw{display:inline-flex;gap:6px;align-items:center;font-weight:600}.mini-sw input{width:20px;height:20px}
+.meals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.meal{background:var(--goldbg);border:1px solid #e6cf7e;border-radius:var(--r);padding:14px;text-align:center}
+.meal span{display:block;font-weight:700;color:var(--goldink)}.meal b{display:block;font-size:2.2rem;line-height:1.1}
+.logic{margin:0;padding-left:20px;font-size:.9rem;line-height:1.6}
+.bcard{margin:0 0 14px;border-top:3px solid var(--gold)}
+.bstats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.bstats a{text-decoration:none;color:var(--ink);background:var(--bg);border-radius:12px;padding:10px;text-align:center}
+.bstats a b{display:block;font-size:1.6rem}.bstats a span{font-size:.78rem;font-weight:600;color:var(--muted)}
+.bstats a.red{background:var(--abg)}.bstats a.red b,.bstats a.red span{color:var(--a)}
 /* print */
 @media print{
   @page{size:A4 landscape;margin:10mm}
@@ -280,6 +308,7 @@ body.has-bar .toast{bottom:150px}
   <a href="#take" data-tab="take"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg><span>Register</span></a>
   <a href="#today" data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Today</span></a>
   <a href="#register" data-tab="register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 13h2M14 13h2M8 17h2M14 17h2"/></svg><span>Monthly</span></a>
+  <a href="#boarding" data-tab="boarding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V6M22 20v-6a3 3 0 0 0-3-3H10v6"/><path d="M2 17h20"/><circle cx="6" cy="11" r="2"/></svg><span>Boarding</span></a>
   <a href="#settings" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Settings</span></a>
 </nav>
 <main id="main" tabindex="-1"></main>
@@ -289,7 +318,7 @@ body.has-bar .toast{bottom:150px}
 <script>
 (function(){
 "use strict";
-var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='take-register-v3.1';
+var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='boarding-v4';
 var TEACHERS=["Ahmed Jeewa","Asaamu","Asad Mohammed Msiza","Fahima Mayet","Imraan Joosub","Khalid Ayob","Mahmood Desai","Mohamed Elsayed Atia","Mohamed Naeem Nombewu","Mohammad Hoosein Akhalwaya","Muhammad Ashraf E Dockrat","Muhammad Binyamin","Muhammed Desai","Muhammed S dockrat","Nafisa Amod","Nazreen Dada","Samir Mall","Sumaiya Cassim","Yusuf Suliman","Zubair Ismail"];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -327,7 +356,7 @@ function prevSchoolDay(d){for(var i=0;i<14;i++){d=addDays(d,-1);if(isSchoolDay(d
 
 /* ---------- storage ---------- */
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
-function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.teachers)seed();var d=defaults();for(var k in d)if(S.settings[k]==null)S.settings[k]=d[k];S.saved=S.saved||{}}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.teachers)seed();var d=defaults();for(var k in d)if(S.settings[k]==null)S.settings[k]=d[k];S.saved=S.saved||{};if(!S.boarding){seedBoarding();save()}}
 function defaults(){return {schoolName:DEF_NAME,tagline:DEF_TAG,keeper:'Joosy',start:'07:30',late:'07:45',days:[1,2,3,4,5],selfSignIn:false,pinOn:false,requirePin:false,adminPin:'1234',trackOut:false}}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function seed(){
@@ -355,6 +384,7 @@ function seed(){
     S.saved[d]={at:fmtDate(d)+' '+fromMin(toMin('07:50')+r()*15),by:'Joosy'};
   }
   var dA=addDays(t0,-5); while(!isSchoolDay(dA))dA=addDays(dA,-1);
+  seedBoarding();
   if(S.records[dA])S.records[dA][5]={status:'present',audit:[{at:fmtDate(dA)+' 09:12',text:'Late 07:55 → Present · Reason: was on gate duty from 07:15 · by Joosy'}]};
   save();
 }
@@ -402,7 +432,7 @@ function pwa(){
 }
 
 /* ---------- router ---------- */
-var VIEWS={take:1,today:1,register:1,settings:1,teacher:1,signin:1};
+var VIEWS={take:1,today:1,register:1,settings:1,teacher:1,signin:1,boarding:1};
 function route(){
   var h=(location.hash||'#take').slice(1).split('/'), v=h[0]||'take';
   if(!VIEWS[v])v='take';
@@ -412,7 +442,7 @@ function route(){
   closeModal();header();
   document.body.classList.toggle('has-bar',v==='take'&&!needsLock(v));
   if(needsLock(v)){renderLock();return}
-  ({take:renderTake,signin:renderSignin,today:renderToday,register:renderRegister,settings:renderSettings,teacher:renderTeacher})[v]();
+  ({boarding:renderBoarding,take:renderTake,signin:renderSignin,today:renderToday,register:renderRegister,settings:renderSettings,teacher:renderTeacher})[v]();
   window.scrollTo(0,0);
 }
 function footer(){return '<footer class="foot no-print">'+(S.demo?'Showing example data for demonstration · ':'')+'Times shown in South Africa time (SAST)'+(S.demo?' · <button data-act="reset">Reset demo</button>':'')+'</footer>'}
@@ -537,8 +567,8 @@ function openShare(){
    '<div class="row" style="margin-top:14px"><a class="btn wa" style="flex:2;text-decoration:none" id="waLink" href="https://wa.me/?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">'+WA+'WhatsApp</a>'+(navigator.share?'<button class="btn" style="flex:1" data-act="nshare">Share…</button>':'')+'<button class="btn" style="flex:1" data-act="copySum">Copy</button></div>');
 }
 function copyText(t){
-  function fb(){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();toast(ok?'Summary copied':'Copy not available – select the text and copy')}
-  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(function(){toast('Summary copied')},fb);else fb();
+  function fb(){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();toast(ok?'Copied to clipboard':'Copy not available – select the text and copy')}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(function(){toast('Copied to clipboard')},fb);else fb();
 }
 
 /* ---------- Teacher self sign-in (optional) ---------- */
@@ -606,7 +636,7 @@ function renderToday(){
    (sv?'<div class="small muted" style="margin-top:8px">✓ Register saved at '+sv.at.slice(-5)+' by '+esc(sv.by||keeper())+' · <a href="#take" data-act="openTake" data-d="'+d+'" style="color:var(--g2);font-weight:600">Open register</a></div>'
      :(isSchoolDay(d)?'<div class="notice" style="margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1">The register for '+(isT?'today':fmtDateW(d))+' has not been taken yet.</span><button class="btn sm primary" data-act="openTake" data-d="'+d+'">Take register</button></div>':''))+
    '<div class="counters">'+ctr.map(function(c){return '<button class="counter s-'+c[0]+(f===c[0]?' on':'')+'" style="background:#fff" data-act="filter" data-f="'+c[0]+'" aria-pressed="'+(f===c[0])+'"><b>'+counts[c[0]]+'</b><span>'+c[1]+'</span></button>'}).join('')+'</div>'+
-   '<div class="card"><div class="row pad" style="padding-bottom:6px"><b>'+(f==='all'?'All staff':STATUS_LABEL[f])+'</b><span class="muted small">'+(f==='all'?rows.length:counts[f])+' teachers</span><div class="spacer"></div>'+(f!=='all'?'<button class="btn sm" data-act="filter" data-f="all">Show all</button>':'')+'</div><ul class="list">'+
+   (isT?boardingCard():'')+'<div class="card"><div class="row pad" style="padding-bottom:6px"><b>'+(f==='all'?'All staff':STATUS_LABEL[f])+'</b><span class="muted small">'+(f==='all'?rows.length:counts[f])+' teachers</span><div class="spacer"></div>'+(f!=='all'?'<button class="btn sm" data-act="filter" data-f="all">Show all</button>':'')+'</div><ul class="list">'+
    rows.filter(function(o){return f==='all'||o.st===f}).map(function(o){
      var r=o.r||{}, times='', outBtn='';
      if(o.st==='late')times='Arrived <b>'+(r.in||'?')+'</b>';else if(o.st==='present')times=r.in?'In <b>'+r.in+'</b>':'Present';
@@ -739,6 +769,169 @@ function settingsChange(e){
   save();header();toast('Saved');if(rerender){var y=window.scrollY;renderSettings();window.scrollTo(0,y)}
 }
 
+/* ---------- Boarding (sample learners) ---------- */
+var LEARNERS=["Aadil Patel","Zaid Moosa","Ibrahim Khan","Yaseen Cassim","Hamza Bham","Mikaeel Essop","Uzair Laher","Ismail Vawda","Taahir Seedat","Muaaz Kajee","Ridwaan Hassim","Bilaal Sader","Abdullah Mia","Haroon Paruk","Luqmaan Docrat","Saalih Jassat","Faheem Asmal","Waseem Dawood","Junaid Bayat","Nabeel Ebrahim","Raees Kathrada","Shaheed Omar","Tariq Hendricks","Ziyaad Adams","Mujahid Salie","Fuad Davids","Imtiaz Jacobs","Aqeel Petersen","Riyaad Isaacs","Moosa Khumalo","Siddiq Mahomed","Yahya Ndlovu","Zakariyya Gani","Anas Valli","Sulaiman Lockhat","Ammaar Suleman"];
+var DORMS=['Dorm A','Dorm B','Dorm C'], RELS=['Father','Mother','Uncle','Brother','Grandparent','Guardian','Driver','Other'];
+var BST={in:'In',pass:'Out on pass',sick:'Sick bay',missing:'Missing'};
+var MEALS=[['Breakfast','07:00'],['Lunch','13:00'],['Supper','18:30']];
+var ROLL_TIME='20:00';
+function nowDT(){var n=now();return n.date+' '+n.time}
+function fmtDT(s){return s?DOW[dow(s.slice(0,10))]+' '+fmtDate(s.slice(0,10)).slice(0,6)+' '+s.slice(11):'—'}
+function dtMin(s){return pd(s.slice(0,10)).getTime()/60000+toMin(s.slice(11))}
+function durTxt(m){m=Math.round(m);var d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;return (d?d+'d ':'')+(d||h?h+'h ':'')+(d?'':mi+'m')}
+function seedBoarding(){
+  var t0=today(), y=addDays(t0,-1), y2=addDays(t0,-2), r=rng(36);
+  var B={learners:LEARNERS.map(function(n,i){return{id:i,name:n,dorm:DORMS[Math.floor(i/12)],grade:'Gr '+(8+(i%5)),phone:''}}),rolls:{},passes:[],sick:[]};
+  B.passes.push({id:1,lid:3,dest:'Home – Lenasia',collector:'Mr Faizel Cassim',rel:'Uncle',out:y2+' 15:30',due:y+' 18:00',back:null});
+  B.passes.push({id:2,lid:5,dest:'Family wedding – Mayfair',collector:'Mrs Ayesha Essop',rel:'Mother',out:t0+' 13:05',due:addDays(t0,3)+' 17:00',back:null});
+  B.passes.push({id:3,lid:17,dest:'Dentist – Fordsburg',collector:'Mr Yunus Dawood',rel:'Father',out:addDays(t0,-6)+' 10:00',due:addDays(t0,-6)+' 14:00',back:addDays(t0,-6)+' 13:40'});
+  B.passes.push({id:4,lid:24,dest:'Home – Cape Town (weekend)',collector:'Mr Shafiek Salie',rel:'Father',out:addDays(t0,-9)+' 14:00',due:addDays(t0,-7)+' 17:00',back:addDays(t0,-7)+' 16:20'});
+  B.sick.push({id:1,lid:1,complaint:'Fever and sore throat',action:'Paracetamol, fluids, rest; temperature checked 4-hourly',notified:true,in:t0+' 08:10',cleared:null});
+  B.sick.push({id:2,lid:30,complaint:'Sprained ankle (soccer)',action:'Ice, strapping, rest',notified:true,in:addDays(t0,-4)+' 16:30',cleared:addDays(t0,-3)+' 07:30'});
+  for(var d=addDays(t0,-7);d<t0;d=addDays(d,1)){var items={};B.learners.forEach(function(l){items[l.id]=autoState(B,l.id,d)});B.rolls[d]={items:items,at:fmtDate(d)+' '+fromMin(toMin('20:05')+r()*20),by:'Joosy'}}
+  S.boarding=B;
+}
+function activePass(B,lid,at){for(var i=B.passes.length-1;i>=0;i--){var p=B.passes[i];if(p.lid===lid&&p.out<=at&&(!p.back||p.back>at))return p}return null}
+function activeSick(B,lid,at){for(var i=B.sick.length-1;i>=0;i--){var s=B.sick[i];if(s.lid===lid&&s.in<=at&&(!s.cleared||s.cleared>at))return s}return null}
+function autoState(B,lid,d){var at=d+' '+ROLL_TIME;if(d===today()){var n=nowDT();if(n<at)at=n}return activePass(B,lid,at)?'pass':activeSick(B,lid,at)?'sick':'in'}
+function outNow(){var B=S.boarding;return B.passes.filter(function(p){return !p.back})}
+function isOverdue(p){return !p.back&&p.due<nowDT()}
+function sickNow(){return S.boarding.sick.filter(function(s){return !s.cleared})}
+function L(id){return S.boarding.learners[id]}
+function bAvatar(l,cls){return '<span class="avatar '+(cls||'sm')+'" style="background:'+['#14453a','#6b4e16','#2b4f7a'][DORMS.indexOf(l.dorm)]+'" aria-hidden="true">'+esc(initials(l.name))+'</span>'}
+function waLink(phone,text){var n=String(phone||'').replace(/\D/g,'');if(n.charAt(0)==='0')n='27'+n.slice(1);return 'https://wa.me/'+n+'?text='+encodeURIComponent(text)}
+function waBtn(l,text,label){window.__lastParentMsg=text;return '<a class="btn wa" target="_blank" rel="noopener" data-wa="1" href="'+waLink(l.phone,text)+'">'+WA+(label||'WhatsApp parent')+'</a>'}
+function school(){return S.settings.schoolName}
+function msgOut(p){var l=L(p.lid);return 'Assalamu alaikum. This is '+keeper()+' from the '+school()+' boarding house.\n\n'+l.name+' ('+l.dorm+') was signed out on '+fmtDateW(p.out.slice(0,10))+' at '+p.out.slice(11)+', collected by '+p.collector+' ('+p.rel+'), going to '+p.dest+'.\n\nExpected back: '+fmtDateW(p.due.slice(0,10))+' by '+p.due.slice(11)+'.\n\nPlease let us know if plans change. JazakAllah khair.'}
+function msgBack(p){var l=L(p.lid);return 'Assalamu alaikum. This is '+keeper()+' from the '+school()+' boarding house.\n\nAlhamdulillah, '+l.name+' has returned safely and was signed back in on '+fmtDateW(p.back.slice(0,10))+' at '+p.back.slice(11)+'.\n\nJazakAllah khair.'}
+function msgSick(s){var l=L(s.lid);return 'Assalamu alaikum. This is '+keeper()+' from the '+school()+' boarding house.\n\n'+l.name+' is in the sick bay since '+fmtDateW(s.in.slice(0,10))+' '+s.in.slice(11)+': '+s.complaint+'.\nAction taken: '+s.action+'.\n\nWe will keep you updated, in shaa Allah. JazakAllah khair.'}
+
+function renderBoarding(){
+  var tab=view.arg||'roll';
+  var tabs=[['roll','Night roll'],['passes','Leave passes'],['sick','Sick bay'],['kitchen','Kitchen count']];
+  var od=outNow().filter(isOverdue).length;
+  $('#main').innerHTML='<div class="take-head"><div><h2 class="title" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">Boarding <span class="badge b-new">Sample learners</span></h2><p class="lead" style="margin:0">'+S.boarding.learners.length+' boarders · 3 dorms · '+outNow().length+' out on pass'+(od?' · <b style="color:var(--a)">'+od+' overdue</b>':'')+' · '+sickNow().length+' in sick bay</p></div></div>'+
+   '<div class="subtabs" role="tablist">'+tabs.map(function(t){return '<a role="tab" href="#boarding/'+t[0]+'" aria-selected="'+(tab===t[0])+'">'+t[1]+(t[0]==='passes'&&od?' <span class="dot-red">'+od+'</span>':'')+'</a>'}).join('')+'</div><div id="bBody"></div>'+footer();
+  ({roll:bRoll,passes:bPasses,sick:bSick,kitchen:bKitchen}[tab]||bRoll)();
+}
+/* roll call */
+function bMakeDraft(d){var B=S.boarding,sv=B.rolls[d],items={},auto={};B.learners.forEach(function(l){var a=autoState(B,l.id,d);auto[l.id]=a;items[l.id]=sv&&sv.items[l.id]?sv.items[l.id]:a});return{d:d,items:items,auto:auto,base:JSON.stringify(items)}}
+function bDirty(){return view.bd&&JSON.stringify(view.bd.items)!==view.bd.base}
+function bRoll(){
+  var d=view.bDate||today();if(!view.bd||view.bd.d!==d)view.bd=bMakeDraft(d);
+  document.body.classList.add('has-bar');
+  $('#bBody').innerHTML='<div class="take-head" style="margin-top:4px"><div><b>Night roll call</b><span id="bBadge" style="margin-left:8px"></span><div class="muted small">'+fmtDateW(d)+' · roll at '+ROLL_TIME+'</div></div><div class="spacer"></div><div class="datebar"><button class="btn sm" data-bact="bday" data-d="-1" aria-label="Previous night">‹</button><input type="date" class="input date-in" id="bdate" value="'+d+'" max="'+today()+'" aria-label="Roll call date"><button class="btn sm" data-bact="bday" data-d="1" aria-label="Next night"'+(d>=today()?' disabled':'')+'>›</button></div></div>'+
+   '<div id="bBanner"></div><div class="tools"><button class="btn sm" data-bact="allIn">Mark all in</button><span class="spacer"></span><span class="legend-mini muted small"><b>In</b> · <b>Out</b> on pass · <b>Sick</b> bay · <b>Miss</b>ing</span></div><div id="bList"></div>'+
+   '<div class="savebar"><div class="sb-in"><div class="sb-counts tnum" id="bCounts"></div><button class="btn primary sb-btn" data-bact="bSave" id="bBtn">Save roll call</button></div></div>';
+  $('#bdate').addEventListener('change',function(e){if(e.target.value)bChangeDate(e.target.value)});
+  bDraw();
+}
+function bCounts(){var c={in:0,pass:0,sick:0,missing:0},it=view.bd.items;for(var k in it)c[it[k]]++;return c}
+function bCountsTxt(c){var a=[c.in+' in'];if(c.pass)a.push(c.pass+' on pass');if(c.sick)a.push(c.sick+' sick bay');if(c.missing)a.push(c.missing+' missing');return a.join(' · ')}
+function bDraw(){
+  var B=S.boarding,d=view.bd.d,sv=B.rolls[d],dt=bDirty(),c=bCounts(),at=d===today()?nowDT():d+' '+ROLL_TIME;
+  $('#bBadge').innerHTML=sv?(dt?'<span class="badge b-unsaved">Unsaved changes</span>':'<span class="badge b-saved">✓ Saved</span>'):'<span class="badge b-new">Not saved yet</span>';
+  $('#bBanner').innerHTML=sv&&!dt?'<div class="saved-banner" role="status"><div class="ok-ic sm">'+CHECK+'</div><div style="flex:1;min-width:200px"><b>Roll call saved for '+fmtDateW(d)+' at '+sv.at.slice(-5)+'</b><div class="small muted">by '+esc(sv.by)+' · '+bCountsTxt(c)+'</div></div></div>':(c.missing?'<div class="notice" style="margin-top:10px;background:var(--abg);color:#7a1a10"><b>'+c.missing+' learner'+(c.missing>1?'s':'')+' marked missing.</b> Follow the missing-learner procedure and inform the principal.</div>':'');
+  $('#bList').innerHTML=DORMS.map(function(dm){var ls=B.learners.filter(function(l){return l.dorm===dm});var dc=ls.filter(function(l){return view.bd.items[l.id]==='in'}).length;
+    return '<div class="dorm-h"><b>'+dm+'</b><span class="muted small">'+dc+' of '+ls.length+' in</span></div><ul class="list card take">'+ls.map(function(l){
+      var st=view.bd.items[l.id],det='',p=activePass(B,l.id,at),s=activeSick(B,l.id,at);
+      if(st==='pass'&&p)det='On pass · '+esc(p.dest)+' · due '+fmtDT(p.due)+(isOverdue(p)?' <b style="color:var(--a)">OVERDUE</b>':'');else if(st==='pass')det='Out on pass';
+      if(st==='sick')det='Sick bay'+(s?' · '+esc(s.complaint):'');if(st==='missing')det='<b style="color:var(--a)">Missing at roll call</b>';
+      if(st==='in')det=esc(l.grade);
+      return '<li class="tr b-'+st+'"><div class="tn">'+bAvatar(l)+'<div><b>'+esc(l.name)+'</b><small>'+det+'</small></div></div><div class="seg4 b4" role="radiogroup" aria-label="'+esc(l.name)+'">'+[['in','In'],['pass','Out'],['sick','Sick'],['missing','Miss']].map(function(b){return '<button role="radio" class="kb-'+b[0]+'" data-bact="bset" data-id="'+l.id+'" data-st="'+b[0]+'" aria-checked="'+(st===b[0])+'" aria-label="'+BST[b[0]]+'">'+b[1]+'</button>'}).join('')+'</div></li>'}).join('')+'</ul>'}).join('');
+  $('#bCounts').innerHTML='<b>'+bCountsTxt(c)+'</b><span class="small muted"> · '+B.learners.length+' boarders</span>';
+  var btn=$('#bBtn');btn.textContent=sv?(dt?'Save changes':'✓ Saved'):'Save roll call';btn.classList.toggle('done',!!sv&&!dt);
+}
+function bChangeDate(nd){if(nd>today())nd=today();if(bDirty()&&!confirm('Discard unsaved roll call changes?')){$('#bdate').value=view.bd.d;return}view.bDate=nd;view.bd=null;bRoll()}
+function bSave(){var B=S.boarding,d=view.bd.d,sv=B.rolls[d];if(sv&&!bDirty()){toast('Already saved – no changes');return}
+  if(sv&&!confirm('The roll call for '+fmtDateW(d)+' was already saved at '+sv.at.slice(-5)+'. Overwrite it?'))return;
+  var log=(sv&&sv.log)||[];if(sv)B.learners.forEach(function(l){var a=sv.items[l.id],b=view.bd.items[l.id];if(a!==b)log.push(stamp()+' – '+l.name+': '+BST[a]+' → '+BST[b]+' · by '+keeper())});
+  B.rolls[d]={items:JSON.parse(JSON.stringify(view.bd.items)),at:stamp(),by:keeper(),log:log};save();view.bd=bMakeDraft(d);bDraw();window.scrollTo(0,0);toast('Roll call saved for '+fmtDateW(d))}
+/* leave passes */
+function bPasses(){
+  var B=S.boarding,out=outNow().sort(function(a,b){return isOverdue(b)-isOverdue(a)||a.due.localeCompare(b.due)}),back=B.passes.filter(function(p){return p.back}).sort(function(a,b){return b.back.localeCompare(a.back)}).slice(0,8);
+  $('#bBody').innerHTML='<div class="row" style="margin:4px 0 12px"><b style="flex:1">Currently out ('+out.length+')</b><button class="btn primary" data-bact="newPass">+ Sign out a learner</button></div>'+
+   (out.length?'<div class="pass-grid">'+out.map(function(p){var l=L(p.lid),od=isOverdue(p);return '<div class="card pad pass'+(od?' overdue':'')+'"><div class="row" style="gap:10px;flex-wrap:nowrap">'+bAvatar(l)+'<div style="flex:1;min-width:0"><b>'+esc(l.name)+'</b><div class="muted small">'+l.dorm+' · '+l.grade+'</div></div>'+(od?'<span class="chip s-absent">Overdue '+durTxt(dtMin(nowDT())-dtMin(p.due))+'</span>':'<span class="chip s-leave">Out</span>')+'</div>'+
+     '<dl class="pdl"><dt>Going to</dt><dd>'+esc(p.dest)+'</dd><dt>Collected by</dt><dd>'+esc(p.collector)+' ('+esc(p.rel)+')</dd><dt>Out</dt><dd>'+fmtDT(p.out)+'</dd><dt>Due back</dt><dd'+(od?' style="color:var(--a);font-weight:700"':'')+'>'+fmtDT(p.due)+'</dd></dl>'+
+     '<div class="row"><button class="btn primary" style="flex:1" data-bact="passIn" data-id="'+p.id+'">Sign in (returned)</button>'+waBtn(l,od?'Assalamu alaikum. This is '+keeper()+' from the '+school()+' boarding house. '+l.name+' was due back '+fmtDateW(p.due.slice(0,10))+' by '+p.due.slice(11)+' but has not returned yet. Please let us know when to expect him. JazakAllah khair.':msgOut(p),od?'Ask parent':'WhatsApp')+'</div></div>'}).join('')+'</div>':'<p class="muted">No learners are out right now.</p>')+
+   '<h3 style="margin:22px 0 8px;font-size:1rem">Returned recently</h3><div class="card"><ul class="list">'+(back.length?back.map(function(p){var l=L(p.lid);return '<li class="li">'+bAvatar(l)+'<div class="who"><b>'+esc(l.name)+'</b><div class="times">'+esc(p.dest)+' · out '+fmtDT(p.out)+' · back '+fmtDT(p.back)+'</div></div>'+(p.back>p.due?'<span class="chip s-late">Late return</span>':'<span class="chip s-present">On time</span>')+'</li>'}).join(''):'<li class="li muted">None yet</li>')+'</ul></div>';
+}
+function learnerOptions(filter){return S.boarding.learners.filter(filter).map(function(l){return '<option value="'+l.id+'">'+esc(l.name)+' – '+l.dorm+'</option>'}).join('')}
+function openNewPass(){
+  var outIds=outNow().map(function(p){return p.lid}), t=today();
+  modal(X+'<h3>Sign out a learner</h3><p class="muted small" style="margin:0 0 4px">Leave pass · '+fmtDateW(t)+' '+now().time+'</p>'+
+   '<label class="f" for="pL">Learner</label><select class="input" id="pL">'+learnerOptions(function(l){return outIds.indexOf(l.id)<0})+'</select>'+
+   '<label class="f" for="pDest">Destination / reason</label><input class="input" id="pDest" maxlength="80" placeholder="e.g. Home – Lenasia (weekend)">'+
+   '<div class="row" style="flex-wrap:nowrap"><div style="flex:3"><label class="f" for="pBy">Collected by</label><input class="input" id="pBy" maxlength="60" placeholder="Full name"></div><div style="flex:2"><label class="f" for="pRel">Relationship</label><select class="input" id="pRel">'+RELS.map(function(r){return '<option>'+r+'</option>'}).join('')+'</select></div></div>'+
+   '<div class="row" style="flex-wrap:nowrap"><div style="flex:3"><label class="f" for="pDD">Expected back</label><input class="input" type="date" id="pDD" min="'+t+'" value="'+addDays(t,2)+'"></div><div style="flex:2"><label class="f" for="pDT">by</label><input class="input" type="time" id="pDT" value="17:00"></div></div>'+
+   '<label class="f" for="pPh">Parent WhatsApp number (sample – leave blank to pick a contact)</label><input class="input" id="pPh" inputmode="tel" placeholder="e.g. 082 000 0000 (sample)">'+
+   '<div class="row" style="margin-top:16px;flex-wrap:nowrap"><button class="btn" data-act="close" style="flex:1">Cancel</button><button class="btn primary" data-bact="savePass" style="flex:2">Sign out</button></div>');
+  $('#pL').addEventListener('change',function(){$('#pPh').value=L(+$('#pL').value).phone||''});
+}
+function savePass(){
+  var lid=+$('#pL').value,dest=$('#pDest').value.trim(),by=$('#pBy').value.trim(),due=$('#pDD').value+' '+$('#pDT').value;
+  if(!dest||!by){toast('Please fill in destination and who collected');return}
+  if(!$('#pDD').value||!$('#pDT').value||due<=nowDT()){toast('Expected return must be in the future');return}
+  var B=S.boarding,p={id:Date.now(),lid:lid,dest:dest,collector:by,rel:$('#pRel').value,out:nowDT(),due:due,back:null};
+  L(lid).phone=$('#pPh').value.trim();B.passes.push(p);save();view.bd=null;
+  modal(X+'<div class="center"><div class="ok-ic">'+CHECK+'</div><h3>'+esc(L(lid).name)+' signed out</h3><div class="bigtime">'+p.out.slice(11)+'</div><p class="muted" style="margin:0">Due back '+fmtDT(p.due)+'</p></div><label class="f">Message to parent</label><pre class="sumtext" id="parentMsg">'+esc(msgOut(p))+'</pre><div class="row" style="margin-top:14px">'+waBtn(L(lid),msgOut(p))+'<button class="btn" data-bact="copyMsg">Copy</button><button class="btn" data-act="close">Done</button></div>');
+  bPassesIfOpen();
+}
+function passIn(id){var p=S.boarding.passes.filter(function(x){return x.id===id})[0];if(!p)return;p.back=nowDT();save();view.bd=null;var l=L(p.lid),late=p.back>p.due;
+  modal(X+'<div class="center"><div class="ok-ic">'+CHECK+'</div><h3>'+esc(l.name)+' is back</h3><div class="bigtime">'+p.back.slice(11)+'</div><p class="muted" style="margin:0">'+(late?'Returned '+durTxt(dtMin(p.back)-dtMin(p.due))+' late':'Returned on time')+'</p></div><label class="f">Message to parent</label><pre class="sumtext" id="parentMsg">'+esc(msgBack(p))+'</pre><div class="row" style="margin-top:14px">'+waBtn(l,msgBack(p))+'<button class="btn" data-bact="copyMsg">Copy</button><button class="btn" data-act="close">Done</button></div>');
+  bPassesIfOpen();}
+function bPassesIfOpen(){if(view.name==='boarding')renderBoarding()}
+/* sick bay */
+function bSick(){
+  var B=S.boarding,cur=sickNow(),past=B.sick.filter(function(s){return s.cleared}).sort(function(a,b){return b.cleared.localeCompare(a.cleared)});
+  $('#bBody').innerHTML='<div class="row" style="margin:4px 0 12px"><b style="flex:1">In sick bay now ('+cur.length+')</b><button class="btn primary" data-bact="newSick">+ Admit to sick bay</button></div>'+
+   (cur.length?'<div class="pass-grid">'+cur.map(function(s){var l=L(s.lid);return '<div class="card pad pass sick"><div class="row" style="gap:10px;flex-wrap:nowrap">'+bAvatar(l)+'<div style="flex:1"><b>'+esc(l.name)+'</b><div class="muted small">'+l.dorm+' · since '+fmtDT(s.in)+'</div></div><span class="chip s-late">Sick bay</span></div><dl class="pdl"><dt>Complaint</dt><dd>'+esc(s.complaint)+'</dd><dt>Action taken</dt><dd>'+esc(s.action)+'</dd><dt>Parent notified</dt><dd><label class="mini-sw"><input type="checkbox" data-sick-notify="'+s.id+'"'+(s.notified?' checked':'')+'> '+(s.notified?'Yes':'No')+'</label></dd></dl><div class="row"><button class="btn primary" style="flex:1" data-bact="clearSick" data-id="'+s.id+'">Cleared – back to dorm</button>'+waBtn(l,msgSick(s),'WhatsApp')+'</div></div>'}).join('')+'</div>':'<p class="muted">Sick bay is empty, alhamdulillah.</p>')+
+   '<h3 style="margin:22px 0 8px;font-size:1rem">Sick bay log</h3><div class="card"><ul class="list">'+(past.length?past.map(function(s){var l=L(s.lid);return '<li class="li">'+bAvatar(l)+'<div class="who"><b>'+esc(l.name)+'</b><div class="times">'+esc(s.complaint)+' · '+esc(s.action)+'</div><div class="times">In '+fmtDT(s.in)+' · cleared '+fmtDT(s.cleared)+' · parent notified: '+(s.notified?'yes':'no')+'</div></div></li>'}).join(''):'<li class="li muted">No earlier entries</li>')+'</ul></div>';
+}
+function openNewSick(){var ids=sickNow().map(function(s){return s.lid}),outIds=outNow().map(function(p){return p.lid});
+  modal(X+'<h3>Admit to sick bay</h3><label class="f" for="sL">Learner</label><select class="input" id="sL">'+learnerOptions(function(l){return ids.indexOf(l.id)<0&&outIds.indexOf(l.id)<0})+'</select><label class="f" for="sC">Complaint</label><input class="input" id="sC" maxlength="100" placeholder="e.g. Headache, high temperature"><label class="f" for="sA">Action taken</label><input class="input" id="sA" maxlength="140" placeholder="e.g. Panado, rest, temperature checked"><div class="switch"><div><b>Parent notified</b></div><input type="checkbox" id="sN" aria-label="Parent notified"></div><div class="row" style="margin-top:12px;flex-wrap:nowrap"><button class="btn" data-act="close" style="flex:1">Cancel</button><button class="btn primary" data-bact="saveSick" style="flex:2">Admit</button></div>')}
+function saveSick(){var c=$('#sC').value.trim(),a=$('#sA').value.trim();if(!c){toast('Please enter the complaint');return}var s={id:Date.now(),lid:+$('#sL').value,complaint:c,action:a||'Observation',notified:$('#sN').checked,in:nowDT(),cleared:null};S.boarding.sick.push(s);save();view.bd=null;closeModal();toast(L(s.lid).name+' admitted to sick bay');renderBoarding()}
+/* kitchen */
+function kitchenCalc(){
+  var B=S.boarding,tm=addDays(today(),1),total=B.learners.length;
+  return MEALS.map(function(m){var at=tm+' '+m[1],away=[];
+    outNow().forEach(function(p){var od=isOverdue(p);if(od||p.due>at)away.push({p:p,od:od})});
+    return {meal:m[0],time:m[1],count:total-away.length,away:away};
+  });
+}
+function bKitchen(){
+  var tm=addDays(today(),1),rows=kitchenCalc(),total=S.boarding.learners.length,sk=sickNow().length,dueBack=outNow().filter(function(p){return !isOverdue(p)&&p.due<=tm+' 18:30'});
+  $('#bBody').innerHTML='<div class="card pad" style="margin-top:4px"><div class="row"><div style="flex:1"><b>Tomorrow · '+fmtDateW(tm)+'</b><div class="muted small">Boarders expected at each meal</div></div><button class="btn" data-bact="copyKitchen">Copy for kitchen</button></div>'+
+   '<div class="meals">'+rows.map(function(r){return '<div class="meal"><span>'+r.meal+'</span><b class="tnum">'+r.count+'</b><small class="muted">'+r.time+'</small></div>'}).join('')+'</div>'+
+   '<h4 style="margin:16px 0 6px">How this is worked out</h4><ol class="logic"><li>Start with all <b>'+total+'</b> boarders.</li>'+
+   rows.map(function(r){return '<li><b>'+r.meal+' ('+r.time+')</b>: '+total+(r.away.length?' − '+r.away.length+' away ('+r.away.map(function(a){return esc(L(a.p.lid).name)+(a.od?', overdue – not counted until signed in':', back '+fmtDT(a.p.due))}).join('; ')+')':'')+' = <b>'+r.count+'</b></li>'}).join('')+
+   (dueBack.length?'<li>Due back before supper and counted: '+dueBack.map(function(p){return esc(L(p.lid).name)+' ('+fmtDT(p.due)+')'}).join(', ')+'.</li>':'')+
+   '<li>Learners in the sick bay ('+sk+') are counted – the kitchen may need light meals for them.</li></ol></div>';
+}
+function kitchenText(){var tm=addDays(today(),1),r=kitchenCalc();return '*'+school()+' – Kitchen count*\n'+fmtDateW(tm)+'\n\n'+r.map(function(x){return x.meal+' ('+x.time+'): '+x.count}).join('\n')+'\n\nSick bay: '+sickNow().length+' (light meals)\nFrom '+keeper()}
+function boardingCard(){
+  var B=S.boarding,out=outNow(),od=out.filter(isOverdue).length,sk=sickNow().length,ro=B.rolls[today()],inN=B.learners.length-out.length-sk;
+  return '<div class="card pad bcard"><div class="row"><b style="flex:1">Boarding <span class="muted small" style="font-weight:500">· sample learners · '+(ro?'roll call saved '+ro.at.slice(-5):'tonight\'s roll not taken yet')+'</span></b><a class="btn sm" href="#boarding/roll">Open boarding</a></div><div class="bstats"><a href="#boarding/roll"><b>'+inN+'</b><span>In</span></a><a href="#boarding/passes"><b>'+out.length+'</b><span>Out on pass</span></a><a href="#boarding/passes" class="'+(od?'red':'')+'"><b>'+od+'</b><span>Overdue</span></a><a href="#boarding/sick"><b>'+sk+'</b><span>Sick bay</span></a></div></div>';
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-bact]');if(!b)return;var a=b.dataset.bact,id=b.dataset.id!=null?+b.dataset.id:null;
+  switch(a){
+    case 'bset':view.bd.items[id]=b.dataset.st;bDraw();break;
+    case 'allIn':S.boarding.learners.forEach(function(l){view.bd.items[l.id]='in'});bDraw();toast('Everyone marked in');break;
+    case 'bSave':bSave();break;
+    case 'bday':var nd=addDays(view.bd.d,+b.dataset.d);bChangeDate(nd);break;
+    case 'newPass':openNewPass();break;
+    case 'savePass':savePass();break;
+    case 'passIn':if(confirm('Sign '+L(S.boarding.passes.filter(function(x){return x.id===id})[0].lid).name+' back in now?'))passIn(id);break;
+    case 'copyMsg':copyText($('#parentMsg').textContent);break;
+    case 'newSick':openNewSick();break;
+    case 'saveSick':saveSick();break;
+    case 'clearSick':var s=S.boarding.sick.filter(function(x){return x.id===id})[0];s.cleared=nowDT();save();view.bd=null;toast(L(s.lid).name+' cleared from sick bay');renderBoarding();break;
+    case 'copyKitchen':copyText(kitchenText());break;
+  }
+});
+document.addEventListener('change',function(e){var sid=e.target.dataset&&e.target.dataset.sickNotify;if(sid){var s=S.boarding.sick.filter(function(x){return x.id===+sid})[0];s.notified=e.target.checked;save();renderBoarding()}});
+
 /* ---------- events ---------- */
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-act]');if(!b)return;
@@ -785,7 +978,7 @@ document.addEventListener('keydown',function(e){
   if(view.name&&needsLock(view.name)&&!$('#modalRoot').innerHTML){if(/^[0-9]$/.test(e.key))pinKey(e.key);else if(e.key==='Backspace')pinKey('b')}
   if(e.key==='Enter'&&e.target.id==='tpin'){var btn=$('#modalRoot [data-act=signin],#modalRoot [data-act=signout]');btn&&btn.click()}
 });
-window.addEventListener('beforeunload',function(e){if(view.name==='take'&&dirty()){e.preventDefault();e.returnValue=''}});
+window.addEventListener('beforeunload',function(e){if((view.name==='take'&&dirty())||(view.name==='boarding'&&bDirty())){e.preventDefault();e.returnValue=''}});
 window.addEventListener('hashchange',route);
 var lastDate;
 setInterval(function(){header();var d=today();if(lastDate&&d!==lastDate&&!$('#modalRoot').innerHTML&&!dirty()){view.draft=null;view.takeDate=null;route()}lastDate=d},10000);
