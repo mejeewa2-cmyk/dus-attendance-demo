@@ -289,7 +289,7 @@ body.has-bar .toast{bottom:150px}
 <script>
 (function(){
 "use strict";
-var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='take-register-v3';
+var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='take-register-v3.1';
 var TEACHERS=["Ahmed Jeewa","Asaamu","Asad Mohammed Msiza","Fahima Mayet","Imraan Joosub","Khalid Ayob","Mahmood Desai","Mohamed Elsayed Atia","Mohamed Naeem Nombewu","Mohammad Hoosein Akhalwaya","Muhammad Ashraf E Dockrat","Muhammad Binyamin","Muhammed Desai","Muhammed S dockrat","Nafisa Amod","Nazreen Dada","Samir Mall","Sumaiya Cassim","Yusuf Suliman","Zubair Ismail"];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -397,7 +397,7 @@ function pwa(){
   $('#logoImg').src=src;
   var ic=document.createElement('link');ic.rel='icon';ic.type='image/jpeg';ic.href=src;document.head.appendChild(ic);
   var m={name:(S.settings.schoolName||DEF_NAME)+' – Staff Register',short_name:'DUS Register',description:'Daily staff attendance register',display:'standalone',orientation:'portrait',background_color:'#ffffff',theme_color:'#0d1f1a',icons:[{src:src,sizes:'256x256',type:'image/jpeg',purpose:'any'}]};
-  try{if(/^https?:/.test(location.protocol)){var base=location.href.split('#')[0];m.start_url=base;m.scope=base.replace(/[^/]*$/,'')}}catch(e){}
+  try{if(/^https?:/.test(location.protocol)){var base=location.origin+location.pathname;m.start_url=base;m.scope=base.replace(/[^/]*$/,'')}}catch(e){}
   var l=document.createElement('link');l.rel='manifest';l.href='data:application/manifest+json,'+encodeURIComponent(JSON.stringify(m));document.head.appendChild(l);
 }
 
