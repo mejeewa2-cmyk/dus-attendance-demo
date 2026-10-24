@@ -220,14 +220,17 @@ footer.foot button{background:none;border:0;color:var(--g2);text-decoration:unde
 .seg4 button[aria-checked=true].k-late{background:#9a5600;border-color:#9a5600;color:#fff}
 .seg4 button[aria-checked=true].k-absent{background:#b42318;border-color:#b42318;color:#fff}
 .seg4 button[aria-checked=true].k-leave{background:#3446a8;border-color:#3446a8;color:#fff}
-.savebar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:19;background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -4px 12px rgba(0,0,0,.05);padding:7px 14px}
-.sb-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.sb-counts{flex:1;min-width:0;font-size:.9rem;line-height:1.3}
+.sb-counts{margin:10px 2px 0;line-height:1.3}
+nav.tabs{transition:transform .28s ease;will-change:transform}
+.savepill{position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(58px + 14px + env(safe-area-inset-bottom));z-index:25;min-height:44px;padding:0 20px;border-radius:99px;border:1px solid var(--gold2);background:var(--gold);color:#13201c;font-weight:700;font-size:.95rem;box-shadow:0 6px 18px rgba(0,0,0,.18);opacity:0;transform:translateY(12px) scale(.92);pointer-events:none;transition:opacity .2s,transform .2s,bottom .28s ease,background .2s}
+.savepill.show{opacity:1;transform:none;pointer-events:auto}
+.savepill.done{background:var(--pbg);border-color:#bfe3cc;color:var(--p);pointer-events:none}
+@media(max-width:859px){body.nav-hidden nav.tabs{transform:translateY(calc(100% + 6px))}body.nav-hidden .savepill{bottom:calc(16px + env(safe-area-inset-bottom))}body.nav-hidden .toast{bottom:calc(76px + env(safe-area-inset-bottom))}}
 .sb-btn{min-height:42px;height:42px;padding:0 18px;font-size:.95rem;border-radius:11px;flex:none;align-self:center}
 .btn.primary.sb-btn.done,.btn.primary.sb-btn.done:hover{background:var(--pbg);border-color:#bfe3cc;color:var(--p);box-shadow:none}
-body.has-bar main{padding-bottom:150px}
+body.has-bar main{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 body.has-bar .toast{bottom:128px}
-@media(min-width:860px){.savebar{bottom:0}body.has-bar main{padding-bottom:110px}body.has-bar .toast{bottom:96px}}
+@media(min-width:860px){.savepill{bottom:24px}body.has-bar main{padding-bottom:110px}body.has-bar .toast{bottom:96px}}
 .saved-banner{display:flex;gap:12px;align-items:center;background:#effaf3;border:1px solid #bfe3cc;border-left:5px solid var(--gold);border-radius:var(--r);padding:12px 14px;margin-top:12px;flex-wrap:wrap}
 .ok-ic.sm{width:42px;height:42px;margin:0;box-shadow:0 0 0 2px var(--gold)}.ok-ic.sm svg{width:24px;height:24px}
 .btn.wa{background:#167a41;border-color:#167a41;color:#fff}.btn.wa:hover{background:#116535}
@@ -363,7 +366,7 @@ table.reg.ms td{min-width:64px}table.reg.ms tr.avg td{font-weight:700;background
   table.reg.ms td,table.reg.ms th{font-size:8pt}
   .etab{font-size:9pt}.bars{max-width:none}
   body{background:#fff;font-size:10pt}
-  header.top,nav.tabs,.no-print,footer.foot,.toast,.overlay{display:none!important}
+  header.top,nav.tabs,.no-print,footer.foot,.toast,.overlay,.savepill{display:none!important}
   main{padding:0;max-width:none}
   .print-only{display:block}
   .reg-wrap{max-height:none;overflow:visible;box-shadow:none;border:1px solid #999;border-radius:0}
@@ -414,7 +417,7 @@ table.reg.ms td{min-width:64px}table.reg.ms tr.avg td{font-weight:700;background
 <script>
 (function(){
 "use strict";
-var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='school-v6';
+var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='school-v7';
 var TEACHERS=["Ahmed Jeewa","Asaamu","Asad Mohammed Msiza","Fahima Mayet","Imraan Joosub","Khalid Ayob","Mahmood Desai","Mohamed Elsayed Atia","Mohamed Naeem Nombewu","Mohammad Hoosein Akhalwaya","Muhammad Ashraf E Dockrat","Muhammad Binyamin","Muhammed Desai","Muhammed S dockrat","Nafisa Amod","Nazreen Dada","Samir Mall","Sumaiya Cassim","Yusuf Suliman","Zubair Ismail"];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -476,8 +479,22 @@ function keeper(){return S.settings.keeper||'Register keeper'}
 function prevSchoolDay(d){for(var i=0;i<14;i++){d=addDays(d,-1);if(isSchoolDay(d))return d}return null}
 
 /* ---------- storage ---------- */
+function oldClasses(x){var c=x&&x.classes;return !c||!c.length||(c.length===10&&c.every(function(k,i){return k.name==='Class '+(i+1)}))||c.some(function(k){return k.learners.some(function(l){return l.name==='Zainab Akoob'||l.name==='Nabeel Bham'})})&&!c.some(function(k){return k.name==='1st Year'})}
+var PILL={t:0,h:0};
+function pillSync(id,show){var b=$('#'+id);if(!b)return;clearTimeout(PILL.h);
+  if(show){b.textContent='Save';b.classList.remove('done');b.classList.add('show');return}
+  if(Date.now()-PILL.t<2000){PILL.t=0;b.textContent='Saved ✓';b.classList.add('done','show');PILL.h=setTimeout(function(){b.classList.remove('show')},1300);return}
+  b.classList.remove('show','done')}
+(function(){var mq=window.matchMedia('(max-width:859px)'),lastY=window.scrollY,acc=0,tick=false;
+  function upd(){tick=false;var y=Math.max(0,window.scrollY),dy=y-lastY;lastY=y;
+    if(!mq.matches||y<24||document.querySelector('#modalRoot .overlay')){document.body.classList.remove('nav-hidden');acc=0;return}
+    if((dy>0&&acc<0)||(dy<0&&acc>0))acc=0;acc+=dy;
+    if(acc>14)document.body.classList.add('nav-hidden');else if(acc<-6)document.body.classList.remove('nav-hidden')}
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  window.addEventListener('hashchange',function(){document.body.classList.remove('nav-hidden');acc=0},{passive:true});
+})();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Storage is full – remove some photos')}}
-function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.teachers)seed();var d=defaults();for(var k in d)if(S.settings[k]==null)S.settings[k]=d[k];S.saved=S.saved||{};if(!S.boarding){seedBoarding();save()}if(!S.school){seedSchool();save()}if(!S.ops){seedOps();save()}}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S||!S.teachers)seed();var d=defaults();for(var k in d)if(S.settings[k]==null)S.settings[k]=d[k];S.saved=S.saved||{};if(!S.boarding){seedBoarding();save()}if(!S.school){seedSchool();save()}else if(oldClasses(S.school)){var tm=S.school.term,sj=S.school.subjects;seedSchool();if(tm)S.school.term=tm;if(sj&&sj.length)S.school.subjects=sj;save()}if(!S.ops){seedOps();save()}}
 function defaults(){return {schoolName:DEF_NAME,tagline:DEF_TAG,keeper:'Joosy',start:'07:30',late:'07:45',days:[1,2,3,4,5],selfSignIn:false,pinOn:false,requirePin:false,adminPin:'1234',trackOut:false,hijriAdj:0,boardingRoll:false}}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function seed(){
@@ -589,7 +606,7 @@ function renderTake(){
    '<div id="tBanner"></div>'+
    '<div class="tools"><button class="btn sm" data-act="sameY" title="Copy anyone on leave yesterday"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>Same as yesterday</button><button class="btn sm" data-act="allP">Mark all present</button><span class="spacer"></span><span class="legend-mini muted small"><b>P</b> Present · <b>L</b> Late · <b>A</b> Absent · <b>Lv</b> Leave</span></div>'+
    '<ul class="list card take" id="tList"></ul>'+
-   '<div class="savebar" id="saveBar"><div class="sb-in"><div class="sb-counts tnum" id="sbCounts"></div><button class="btn primary sb-btn" data-act="saveReg" id="sbBtn">Save register</button></div></div>'+footer();
+   '<div class="sb-counts small muted tnum" id="sbCounts"></div><button class="savepill" data-act="saveReg" id="sbBtn" type="button">Save</button>'+footer();
   $('#tdate').addEventListener('change',function(e){if(e.target.value)changeTakeDate(e.target.value)});
   drawTake();
 }
@@ -604,7 +621,7 @@ function drawTake(){
     return '<li class="tr t-'+o.st+'"><div class="tn">'+avatar(x,'sm')+'<div><b>'+esc(x.name)+'</b>'+(det?'<small>'+det+'</small>':'')+'</div></div><div class="seg4" role="radiogroup" aria-label="Status for '+esc(x.name)+'">'+
       [['present','P','Present'],['late','L','Late'],['absent','A','Absent'],['leave','Lv','Leave']].map(function(b){return '<button role="radio" class="k-'+b[0]+'" data-act="setst" data-id="'+x.id+'" data-st="'+b[0]+'" aria-checked="'+(o.st===b[0])+'" aria-label="'+b[2]+'"><span class="abbr">'+b[1]+'</span><span class="full">'+b[2]+'</span></button>'}).join('')+'</div></li>'}).join('');
   $('#sbCounts').innerHTML='<b>'+countsText(c)+'</b><span class="small muted"> · '+S.teachers.length+' staff</span>';
-  var btn=$('#sbBtn');btn.textContent=sv?(dt?'Save changes':'✓ Saved'):'Save register';btn.classList.toggle('done',!!sv&&!dt);
+  pillSync('sbBtn',!sv||dt);
 }
 function changeTakeDate(nd){
   if(nd>today())nd=today();
@@ -950,7 +967,7 @@ function bRoll(){
   document.body.classList.add('has-bar');
   $('#bBody').innerHTML='<div class="take-head" style="margin-top:4px"><div><b>Night roll call</b><span id="bBadge" style="margin-left:8px"></span><div class="muted small">'+fmtDateW(d)+' · <span class="hj">'+hijri(d)+'</span></div></div><div class="spacer"></div><div class="datebar"><button class="btn sm" data-bact="bday" data-d="-1" aria-label="Previous night">‹</button><input type="date" class="input date-in" id="bdate" value="'+d+'" max="'+today()+'" aria-label="Roll call date"><button class="btn sm" data-bact="bday" data-d="1" aria-label="Next night"'+(d>=today()?' disabled':'')+'>›</button></div></div>'+
    '<div id="bBanner"></div><div class="tools"><button class="btn sm" data-bact="allIn">Mark all in</button></div><div id="bList"></div>'+
-   '<div class="savebar"><div class="sb-in"><div class="sb-counts tnum" id="bCounts"></div><button class="btn primary sb-btn" data-bact="bSave" id="bBtn">Save roll call</button></div></div>';
+   '<div class="sb-counts small muted tnum" id="bCounts"></div><button class="savepill" data-bact="bSave" id="bBtn" type="button">Save</button>';
   $('#bdate').addEventListener('change',function(e){if(e.target.value)bChangeDate(e.target.value)});
   bDraw();
 }
@@ -968,7 +985,7 @@ function bDraw(){
       if(st==='in')det=esc(l.grade);
       return '<li class="tr b-'+st+'"><div class="tn">'+bAvatar(l)+'<div><b>'+esc(l.name)+'</b><small>'+det+'</small></div></div><div class="seg4 b4" role="radiogroup" aria-label="'+esc(l.name)+'">'+[['in','In'],['pass','Out'],['sick','Sick'],['missing','Miss']].map(function(b){return '<button role="radio" class="kb-'+b[0]+'" data-bact="bset" data-id="'+l.id+'" data-st="'+b[0]+'" aria-checked="'+(st===b[0])+'" aria-label="'+BST[b[0]]+'">'+b[1]+'</button>'}).join('')+'</div></li>'}).join('')+'</ul>'}).join('');
   $('#bCounts').innerHTML='<b>'+bCountsTxt(c)+'</b><span class="small muted"> · '+B.learners.length+' boarders</span>';
-  var btn=$('#bBtn');btn.textContent=sv?(dt?'Save changes':'✓ Saved'):'Save roll call';btn.classList.toggle('done',!!sv&&!dt);
+  pillSync('bBtn',!sv||dt);
 }
 function bChangeDate(nd){if(nd>today())nd=today();if(bDirty()&&!confirm('Discard unsaved roll call changes?')){$('#bdate').value=view.bd.d;return}view.bDate=nd;view.bd=null;bRoll()}
 function bSave(){var B=S.boarding,d=view.bd.d,sv=B.rolls[d];if(sv&&!bDirty()){toast('Already saved – no changes');return}
@@ -1046,7 +1063,7 @@ document.addEventListener('click',function(e){
   switch(a){
     case 'bset':view.bd.items[id]=b.dataset.st;bDraw();break;
     case 'allIn':S.boarding.learners.forEach(function(l){view.bd.items[l.id]='in'});bDraw();toast('Everyone marked in');break;
-    case 'bSave':bSave();break;
+    case 'bSave':PILL.t=Date.now();bSave();break;
     case 'bday':var nd=addDays(view.bd.d,+b.dataset.d);bChangeDate(nd);break;
     case 'newPass':openNewPass();break;
     case 'savePass':savePass();break;
@@ -1060,18 +1077,16 @@ document.addEventListener('click',function(e){
 });
 document.addEventListener('change',function(e){var sid=e.target.dataset&&e.target.dataset.sickNotify;if(sid){var s=S.boarding.sick.filter(function(x){return x.id===+sid})[0];s.notified=e.target.checked;save();renderBoarding()}});
 
-/* CLASS LIST – replace names here (or in Settings > Classes). teacher = index in the staff list. */
+/* CLASS LIST – edit names here or in Settings > Manage classes. teacher = index in the staff list. */
 var CLASS_DATA=[
-  {name:"Class 1",teacher:0,learners:["Zainab Akoob", "Ali Ebrahim", "Yusuf Ebrahim", "Faheem Haffejee", "Zainab Isaacs", "Shuaib Khan", "Rayyan Khumalo", "Yusra Lockhat", "Idris Mia", "Ahmed Moosa", "Amina Motala", "Aisha Paruk", "Nabeel Petersen", "Faheem Seedat", "Nabeel Suleman", "Maryam Variawa"]},
-  {name:"Class 2",teacher:2,learners:["Husain Akoob", "Hafsa Asmal", "Luqmaan Bham", "Ismail Cassim", "Tasneem Dadabhay", "Ali Davids", "Junaid Dawood", "Zakariyya Kajee", "Taha Motala", "Ridwaan Ndlovu", "Zainab Paruk", "Ahmed Sader", "Ahmed Salie", "Aaliyah Seedat"]},
-  {name:"Class 3",teacher:4,learners:["Yusuf Adams", "Ibrahim Akoob", "Faheem Bayat", "Ruqayyah Dadabhay", "Ruqayyah Isaacs", "Bilal Kathrada", "Yahya Khan", "Ali Khumalo", "Taha Khumalo", "Zahra Laher", "Junaid Mia", "Aaliyah Paruk", "Tasneem Sader", "Khadija Salie", "Raeesa Salie", "Yusra Salie", "Faheem Suleman", "Hafsa Valli"]},
-  {name:"Class 4",teacher:6,learners:["Muaaz Akoob", "Maryam Bham", "Maryam Dadabhay", "Tasneem Docrat", "Zakariyya Ebrahim", "Ali Essop", "Aisha Joosub", "Hasan Joosub", "Ismail Khan", "Hasan Laher", "Luqmaan Mahomed", "Ismail Moosa", "Hafsa Paruk", "Uthman Salie", "Zahra Seedat"]},
-  {name:"Class 5",teacher:8,learners:["Amina Adams", "Nusaybah Adams", "Junaid Bhayat", "Tasneem Dawood", "Fatima Isaacs", "Safiyyah Isaacs", "Muhammad Kajee", "Uthman Lockhat", "Aisha Moosa", "Zainab Ndlovu", "Hasan Vawda", "Nusaybah Vawda"]},
-  {name:"Class 6",teacher:10,learners:["Ayaan Amod", "Khadija Ebrahim", "Mus'ab Gani", "Ruqayyah Hassim", "Nusaybah Hendricks", "Saad Hendricks", "Rayyan Isaacs", "Shuaib Jassat", "Mus'ab Khan", "Aisha Khumalo", "Taha Laher", "Nusaybah Motala", "Husain Omar", "Zubair Petersen", "Yahya Suleman", "Ayaan Vawda", "Tasneem Vawda"]},
-  {name:"Class 7",teacher:12,learners:["Ayaan Docrat", "Hasan Ebrahim", "Muhammad Ebrahim", "Ridwaan Ebrahim", "Mus'ab Hendricks", "Bilal Isaacs", "Raeesa Khumalo", "Husain Mayet", "Ahmed Motala", "Luqmaan Motala", "Ibrahim Patel", "Haleema Sader", "Safiyyah Valli"]},
-  {name:"Class 8",teacher:14,learners:["Hamza Amod", "Husain Bayat", "Bilal Davids", "Zainab Ebrahim", "Yusuf Gani", "Hasan Haffejee", "Amina Hassim", "Aaliyah Kathrada", "Anas Kathrada", "Muaaz Mahomed", "Faheem Patel", "Safiyyah Petersen", "Yusra Petersen", "Ruqayyah Sader", "Yahya Sader", "Ahmed Valli"]},
-  {name:"Class 9",teacher:16,learners:["Bilal Bham", "Saad Bham", "Mus'ab Bhayat", "Nabeel Davids", "Raeesa Docrat", "Nusaybah Ebrahim", "Ridwaan Gani", "Haleema Joosub", "Khadija Kajee", "Imaan Mahomed", "Haleema Moosa", "Nabeel Moosa", "Hafsa Omar", "Naadira Paruk", "Shuaib Patel"]},
-  {name:"Class 10",teacher:18,learners:["Nabeel Bham", "Muhammad Bhayat", "Zainab Essop", "Ali Gani", "Khadija Haffejee", "Raeesa Laher", "Irfaan Lockhat", "Bilal Mayet", "Idris Moosa", "Zakariyya Paruk", "Amina Sader", "Husain Seedat", "Talha Valli", "Raeesa Vawda"]}
+  {name:"1st Year",teacher:0,learners:["Abdul Rahim Ismael", "Daawood Mutsambi", "Hamza Joosub", "Ibrahim M Audi Rahimi", "Ibrahim Omar", "Iqbal Ebrahim", "Mohamed Rameez Alli", "Qasim M Audi Rahimi", "Talha Muhammad", "Haadiyah Mohamed", "Khadija Sona", "Salma Mohamed"]},
+  {name:"2nd Year",teacher:2,learners:["Ahmed Malam", "Ibrahim Malam", "Ibrahim Seshoka", "Ismail Dockrat", "Muhammed Jeewa", "Naseef Khumalo", "Salaahudeen Muhammed", "Yunus Moloto", "Aaisha A Abdulla", "Aasiyyah Bera", "Ameerah Hoosen", "Asmaa Moosa", "Ayesha Kureshi", "Hamida Cassim", "Radiyah Muhammed", "Sumayyah Dockrat", "Sundus Hassen", "Zakiya Javed", "Zubeida Dockrat"]},
+  {name:"3rd Year",teacher:4,learners:["Faiza Khan", "Fatima Rahimi", "Khadija Bera", "Zainub Rahimi"]},
+  {name:"4th Year",teacher:6,learners:["Abdullah Aboobaker", "Dawood Yassin", "Idris Juma", "Ismail Joosub", "Jameel Modikoe", "Muhammad Yasidu", "Musab Omar", "Umar Beemath", "Aamina Ismail", "Ayaana Rawoot", "Madiha Acoob", "Ruqayyah Joosub", "Zahra Ayoob", "Zainab Joosub"]},
+  {name:"5th Year",teacher:8,learners:["Aadam Ali Moh'd", "Mikaeel Mallam", "Mohammed Nabeel Ebrahim", "Muawiyah Docrat", "Muhammad Abdullah", "Halima Mohamed", "Hanna Akhalwaya", "Rafaa Rahimi", "Yasira Mohamed", "Yusra Mohamed", "Zafirah Adam"]},
+  {name:"6th Year",teacher:10,learners:["Abdullah Adam", "Ikram Asad", "Jaabir Ayob", "Muhammad Abubakr", "Muhammad Raees Tayob", "Muhammad Rasheed Mallam", "Aaisha Mall", "Faathima Akhalwaya", "Khaula Akhalwaya", "Mariam Mallam", "Saffiya Ismail"]},
+  {name:"Basic Class",teacher:12,learners:["Abdullah Kareem", "Ebrahim Mthembu", "Imraan Mathebula", "Ismail Lamack Osman", "Jaarullah Ndlovu", "Muhammad Wadi", "Muhammed Ibrahim", "Muhammmed"]},
+  {name:"Prep Class",teacher:14,learners:["Abdullah Kareem", "Ismail Lamack Osman", "Jaarullah Ndlovu", "Ja'far Bhengu", "Muhammad Patel", "Muhammad Wadi", "Muhammed Ibrahim", "Faatima"]}
 ];
 /* ---------- Classes: learner attendance ---------- */
 var CREASONS=['Sick','Family','Unknown','Other'];
@@ -1088,7 +1103,7 @@ function seedSchool(){
   for(var d=S.startDate||addDays(t0,-21);d<=t0;d=addDays(d,1)){
     if(!isSchoolDay(d))continue;var day=X0.reg[d]={};
     X0.classes.forEach(function(c){
-      if(d===t0&&c.id>=7)return;
+      if(d===t0&&c.id>=6)return;
       var items={};c.learners.forEach(function(l){var x=r();items[l.id]=x<.035?{st:'absent',reason:CREASONS[Math.floor(r()*3)]}:x<.06?{st:'late',in:fromMin(toMin('07:46')+r()*25)}:{st:'present'}});
       day[c.id]={items:items,at:fmtDate(d)+' '+fromMin(toMin('07:48')+r()*30),by:tName(c.teacher)};
     });
@@ -1118,7 +1133,7 @@ function cTake(){
   $('#cBody').innerHTML='<div class="selrow"><select class="input" id="cSel" aria-label="Class">'+classOptions(cid)+'</select><input type="date" class="input date-in" id="cDate" value="'+d+'" max="'+today()+'" aria-label="Date"></div>'+
    '<div class="row" style="margin:8px 0 2px"><div style="flex:1;min-width:0"><b>'+esc(cls(cid).name)+'</b> <span id="cBadge"></span><div class="muted small">'+fmtDateW(d)+' · <span class="hj">'+hijri(d)+'</span></div></div><label class="small muted" for="cBy" style="display:flex;align-items:center;gap:6px">By <select class="input sm-in" id="cBy">'+S.teachers.map(function(t){return '<option'+(t.name===view.cd.by?' selected':'')+'>'+esc(t.name)+'</option>'}).join('')+'</select></label></div>'+
    '<div id="cBanner"></div><div class="tools"><button class="btn sm" data-cact="allP">Mark all present</button></div><ul class="list card take" id="cList"></ul>'+
-   '<div class="savebar"><div class="sb-in"><div class="sb-counts tnum" id="cCounts"></div><button class="btn primary sb-btn" data-cact="save" id="cBtn">Save register</button></div></div>';
+   '<div class="sb-counts small muted tnum" id="cCounts"></div><button class="savepill" data-cact="save" id="cBtn" type="button">Save</button>';
   $('#cSel').addEventListener('change',function(e){cSwitch(+e.target.value,view.cd.d)});
   $('#cDate').addEventListener('change',function(e){if(e.target.value)cSwitch(view.cd.cid,e.target.value>today()?today():e.target.value)});
   $('#cBy').addEventListener('change',function(e){view.cd.by=e.target.value});
@@ -1136,7 +1151,7 @@ function cDraw(){
     var wa=(o.st==='absent'&&sv&&!dt)?'<a class="wa-mini" target="_blank" rel="noopener" href="'+waLink(l.phone,cMsg(l,c,cd.d))+'" data-wa="1">'+WA+'WhatsApp parent</a>':'';
     return '<li class="tr t-'+o.st+'"><div class="tn">'+lAv(l,cd.cid)+'<div><b>'+esc(l.name)+'</b>'+(det?'<small>'+det+'</small>':'')+wa+'</div></div><div class="seg4 seg3" role="radiogroup" aria-label="'+esc(l.name)+'">'+[['present','P','Present'],['late','L','Late'],['absent','A','Absent']].map(function(b){return '<button role="radio" class="k-'+b[0]+'" data-cact="set" data-id="'+l.id+'" data-st="'+b[0]+'" aria-checked="'+(o.st===b[0])+'" aria-label="'+b[2]+'"><span class="abbr">'+b[1]+'</span><span class="full">'+b[2]+'</span></button>'}).join('')+'</div></li>'}).join('');
   $('#cCounts').innerHTML='<b>'+n.present+' present'+(n.late?' · '+n.late+' late':'')+(n.absent?' · '+n.absent+' absent':'')+'</b><span class="small muted"> · '+c.learners.length+'</span>';
-  var b=$('#cBtn');b.textContent=sv?(dt?'Save changes':'✓ Saved'):'Save register';b.classList.toggle('done',!!sv&&!dt);
+  pillSync('cBtn',!sv||dt);
 }
 function cSetSt(lid,st){var cd=view.cd,l=lrn(lid);
   if(st==='present'){cd.items[lid]={st:'present'};cDraw();return}
@@ -1385,7 +1400,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-cact
     case 'rs':view.crs=view.crs===b.dataset.r?'':b.dataset.r;document.querySelectorAll('#crsGrid button').forEach(function(x){x.classList.toggle('on',x.dataset.r===view.crs)});break;
     case 'okAbs':view.cd.items[id]=view.crs?{st:'absent',reason:view.crs}:{st:'absent'};closeModal();cDraw();break;
     case 'allP':cls(view.cd.cid).learners.forEach(function(l){view.cd.items[l.id]={st:'present'}});cDraw();break;
-    case 'save':cSave();break;
+    case 'save':PILL.t=Date.now();cSave();break;
     case 'open':view.cCid=+id;view.cd=null;SC().lastClass=+id;location.hash='#classes/take';break;
     case 'cm':var ym=(view.cym||today().slice(0,7)).split('-');view.cym=iso(new Date(Date.UTC(+ym[0],+ym[1]-1+ +b.dataset.d,1))).slice(0,7);cMonthly();break;
     case 'csv':cCSV();break;
@@ -1429,7 +1444,7 @@ document.addEventListener('click',function(e){
     case 'okReason':view.draft.items[id]={st:b.dataset.st,reason:view.rs,note:$('#rsNote').value.trim()};closeModal();drawTake();break;
     case 'sameY':sameAsYesterday();break;
     case 'allP':markAllPresent();break;
-    case 'saveReg':saveRegister();break;
+    case 'saveReg':PILL.t=Date.now();saveRegister();break;
     case 'tday':var nd=view.draft.d;for(var i=0;i<14;i++){nd=addDays(nd,+b.dataset.d);if(isSchoolDay(nd))break}changeTakeDate(nd);break;
     case 'ttoday':changeTakeDate(today());break;
     case 'share':openShare();break;
