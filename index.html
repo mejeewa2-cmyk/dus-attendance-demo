@@ -1507,7 +1507,7 @@ function impUp(im){var w=im.naturalWidth,h=im.naturalHeight,rot=h>w,W=rot?h:w,H=
 function impTile(src,parts,max){var W=src.width,H=src.height,tw=0;parts.forEach(function(p){tw+=(p[1]-p[0])*W});var sc=Math.min(1,max/Math.max(tw,H));
   var c=document.createElement('canvas');c.width=Math.round(tw*sc);c.height=Math.round(H*sc);var g=c.getContext('2d'),x=0;g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);
   parts.forEach(function(p,i){var sw=(p[1]-p[0])*W;g.drawImage(src,p[0]*W,0,sw,H,x,0,sw*sc,H*sc);x+=sw*sc;if(i<parts.length-1){g.fillStyle='#111';g.fillRect(x-2,0,3,c.height)}});return c.toDataURL('image/jpeg',.82)}
-var IMP_TILES=[[[0,.58]],[[0,.58]],[[0,.33],[.54,.8]],[[0,.33],[.76,1]]],IMP_M=['mistral','scout','mistral','mistral'];
+var IMP_TILES=[[[0,.58]],[[0,.58]],[[0,.33],[.54,.8]],[[0,.33],[.76,1]]],IMP_M=['a','b','a','a'];
 function impCall(img,m){var c=impCfg();return fetch(c.url,{method:'POST',headers:{'content-type':'application/json','x-access-code':c.code},body:JSON.stringify({image:img,year:impYear(),m:m})}).then(function(r){return r.json().then(function(j){if(r.status===401)throw new Error('Access code not accepted');if(!j.ok)throw new Error(j.error||'Could not read');return j.data})})}
 function impYear(){var m=String(SC().term||'').match(/20\d\d/);return m?+m[0]:+today().slice(0,4)}
 function impDate(lbl){var m=String(lbl||'').toLowerCase().match(/(\d{1,2})\s*[-\/ ]\s*([a-z]{3})/);if(m&&IMON[m[2]])return impYear()+'-'+String(IMON[m[2]]).padStart(2,'0')+'-'+m[1].padStart(2,'0');m=String(lbl||'').match(/^(\d{4})-(\d\d)-(\d\d)$/);return m?m[0]:null}
