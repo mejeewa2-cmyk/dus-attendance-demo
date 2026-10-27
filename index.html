@@ -386,7 +386,7 @@ table.reg.ms td{min-width:64px}table.reg.ms tr.avg td{font-weight:700;background
   .legend{margin:6px 0}
 }
 .imp-bar{height:8px;background:var(--g3);border-radius:99px;overflow:hidden}.imp-bar i{display:block;height:100%;background:var(--gold);transition:width .3s}
-.imp-card{margin-bottom:12px}.imp-dates{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.imp-d{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:4px 10px;font-size:.85rem;font-weight:600;background:#fff}.imp-d.imp-uns{border-style:dashed;color:var(--muted)}.imp-d small{font-weight:600}.imp-d.imp-today{background:var(--goldbg);border-color:#e6cf7e}
+.imp-card{margin-bottom:12px}.imp-tip{margin:8px 0 0;font-size:.82rem;color:var(--goldink);font-weight:600;display:flex;align-items:center;gap:6px}.imp-tip::before{content:"";width:10px;height:10px;border-radius:3px;background:#fff7d6;box-shadow:0 0 0 2px var(--gold);flex:none}.imp-dates{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.imp-d{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:4px 10px;font-size:.85rem;font-weight:600;background:#fff}.imp-d.imp-uns{border-style:dashed;color:var(--muted)}.imp-d small{font-weight:600}.imp-d.imp-today{background:var(--goldbg);border-color:#e6cf7e}
 .imp-tw{overflow-x:auto;border-top:1px solid var(--line)}.imp-t{border-collapse:collapse;width:100%;font-size:.86rem}.imp-t th{font-size:.74rem;color:var(--muted);padding:6px 4px;text-align:center;font-weight:700}.imp-t th:first-child{text-align:left;padding-left:14px}.imp-t th small{display:block;font-weight:500}
 .imp-t td{border-top:1px solid var(--line);padding:4px;text-align:center}.imp-t td.imp-n{text-align:left;padding-left:14px;min-width:130px}.imp-n small{display:block;color:var(--muted);font-size:.72rem}
 .imp-c{min-width:40px;min-height:36px;border-radius:9px;border:1px solid transparent;font-weight:800;background:var(--pbg);color:var(--p)}.imp-c small{display:block;font-size:.66rem;font-weight:700}.imp-c.c-late{background:var(--lbg);color:var(--l)}.imp-c.c-absent{background:var(--abg);color:var(--a)}.imp-c.low{box-shadow:0 0 0 2px var(--gold);background:#fff7d6}
@@ -423,7 +423,7 @@ table.reg.ms td{min-width:64px}table.reg.ms tr.avg td{font-weight:700;background
 <script>
 (function(){
 "use strict";
-var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='school-v8';
+var TZ='Africa/Johannesburg', KEY='staffRegister.v2', BUILD='school-v8.1';
 var TEACHERS=["Ahmed Jeewa","Asaamu","Asad Mohammed Msiza","Fahima Mayet","Imraan Joosub","Khalid Ayob","Mahmood Desai","Mohamed Elsayed Atia","Mohamed Naeem Nombewu","Mohammad Hoosein Akhalwaya","Muhammad Ashraf E Dockrat","Muhammad Binyamin","Muhammed Desai","Muhammed S dockrat","Nafisa Amod","Nazreen Dada","Samir Mall","Sumaiya Cassim","Yusuf Suliman","Zubair Ismail"];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -893,7 +893,7 @@ function renderSettings(){
    '<div class="card pad sec"><h3>Security</h3>'+sw('sReqPin','Require PIN to open','Ask for a PIN when the app opens.',s.requirePin)+
    '<label class="f" for="sAdmin">PIN</label><input class="input" id="sAdmin" inputmode="numeric" maxlength="4" value="'+esc(s.adminPin)+'" style="max-width:140px;letter-spacing:.3em;text-align:center">'+(s.requirePin?'<div class="row" style="margin-top:12px"><button class="btn" data-act="lock">Lock now</button></div>':'')+'</div>'+
       '</div></div>'+
-   '<div class="card pad sec" style="margin-top:6px"><h3>Sheet import</h3><p class="small muted" style="margin:0 0 6px">Used by Classes → Import sheets.</p><label class="f" for="sReadUrl">Reading address</label><input class="input" id="sReadUrl" inputmode="url" autocomplete="off" value="'+esc(s.readUrl||'')+'"><label class="f" for="sReadCode">Access code</label><input class="input" id="sReadCode" type="password" autocomplete="off" value="'+esc(s.readCode||'')+'" style="max-width:240px">'+((s.readUrl&&s.readCode)?'':'<div class="notice">Not set up yet – sheet photos cannot be read until both are filled in.</div>')+'</div>'+
+   '<div class="card pad sec" style="margin-top:6px"><h3>Sheet import</h3><p class="small muted" style="margin:0 0 6px">Used by Classes → Import sheets.</p><label class="f" for="sReadUrl">Reading address <span class="muted small">(optional – blank uses the built-in one)</span></label><input class="input" id="sReadUrl" inputmode="url" autocomplete="off" value="'+esc(s.readUrl||'')+'"><label class="f" for="sReadCode">Access code <span class="muted small">(optional)</span></label><input class="input" id="sReadCode" type="password" autocomplete="off" value="'+esc(s.readCode||'')+'" style="max-width:240px">'+''+'</div>'+
    '<div class="card pad sec" style="margin-top:6px"><h3>Data</h3><div class="row" style="margin-top:8px"><button class="btn" data-act="reset">Reset data</button><button class="btn danger" data-act="wipe">Clear all records</button></div></div>';
 }
 function settingsChange(e){
@@ -1492,28 +1492,33 @@ var lastDate;
 setInterval(function(){header();if(new Date().getMinutes()%30===0&&new Date().getSeconds()<10)loadHijriFeed();var d=today();if(lastDate&&d!==lastDate&&!$('#modalRoot').innerHTML&&!dirty()){view.draft=null;view.takeDate=null;route()}lastDate=d},10000);
 load();impSetupLink();pwa();lastDate=today();route();loadHijriFeed();
 /* ---------- Classes: import register sheets from photos ---------- */
-var IMP_URL='';
+var IMP_URL='https://read-sheet.bhamjeesgas.workers.dev';
 var IMON={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
 function impCfg(){var s=S.settings;return{url:(s.readUrl||IMP_URL).trim(),code:(s.readCode||'').trim()}}
-function impPick(){var c=impCfg();if(!c.url||!c.code){modal(X+'<h3>Import sheets</h3><p class="small muted">Sheet reading is not set up on this device yet. Enter the access code in Settings → Sheet import.</p><div class="row" style="margin-top:12px"><button class="btn" data-act="close" style="flex:1">Close</button><a class="btn primary" href="#settings" style="flex:1">Open Settings</a></div>');return}
+function impPick(){var c=impCfg();if(!c.url){modal(X+'<h3>Import sheets</h3><p class="small muted">Sheet reading is not set up on this device. Check Settings → Sheet import.</p><div class="row" style="margin-top:12px"><button class="btn" data-act="close" style="flex:1">Close</button><a class="btn primary" href="#settings" style="flex:1">Open Settings</a></div>');return}
   var f=$('#impFile');if(!f){f=document.createElement('input');f.type='file';f.accept='image/*';f.multiple=true;f.id='impFile';f.className='hidden';document.body.appendChild(f);f.addEventListener('change',function(){var L=[].slice.call(f.files||[]);f.value='';if(L.length)impRun(L)})}
   f.click()}
 function impLoad(file){return new Promise(function(res,rej){var u=URL.createObjectURL(file),im=new Image();im.onload=function(){URL.revokeObjectURL(u);res(im)};im.onerror=function(){URL.revokeObjectURL(u);rej(new Error('image'))};im.src=u})}
 /* draw upright (pages are landscape: a portrait photo is turned a quarter left), optional crop of the left part */
-function impUp(im){var w=im.naturalWidth,h=im.naturalHeight,rot=h>w,W=rot?h:w,H=rot?w:h,sc=Math.min(1,3000/W);
+function impUp(im,dir){var w=im.naturalWidth,h=im.naturalHeight,rot=h>w,W=rot?h:w,H=rot?w:h,sc=Math.min(1,3000/W);
   var c=document.createElement('canvas');c.width=Math.round(W*sc);c.height=Math.round(H*sc);var g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.scale(sc,sc);
-  if(rot){g.translate(0,H);g.rotate(-Math.PI/2)}g.drawImage(im,0,0);return c}
+  if(rot){if(dir>0){g.translate(W,0);g.rotate(Math.PI/2)}else{g.translate(0,H);g.rotate(-Math.PI/2)}}g.drawImage(im,0,0);c.rot=rot;return c}
 /* a tile = the names part of the sheet plus one band of date columns, so each read covers only a few columns */
 function impTile(src,parts,max){var W=src.width,H=src.height,tw=0;parts.forEach(function(p){tw+=(p[1]-p[0])*W});var sc=Math.min(1,max/Math.max(tw,H));
   var c=document.createElement('canvas');c.width=Math.round(tw*sc);c.height=Math.round(H*sc);var g=c.getContext('2d'),x=0;g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);
   parts.forEach(function(p,i){var sw=(p[1]-p[0])*W;g.drawImage(src,p[0]*W,0,sw,H,x,0,sw*sc,H*sc);x+=sw*sc;if(i<parts.length-1){g.fillStyle='#111';g.fillRect(x-2,0,3,c.height)}});return c.toDataURL('image/jpeg',.82)}
 var IMP_TILES=[[[0,.58]],[[0,.58]],[[0,.33],[.54,.8]],[[0,.33],[.76,1]]],IMP_M=['a','b','a','a'];
-function impCall(img,m){var c=impCfg();return fetch(c.url,{method:'POST',headers:{'content-type':'application/json','x-access-code':c.code},body:JSON.stringify({image:img,year:impYear(),m:m})}).then(function(r){return r.json().then(function(j){if(r.status===401)throw new Error('Access code not accepted');if(!j.ok)throw new Error(j.error||'Could not read');return j.data})})}
+function impCall(img,m){var c=impCfg();return fetch(c.url,{method:'POST',headers:c.code?{'content-type':'application/json','x-access-code':c.code}:{'content-type':'application/json'},body:JSON.stringify({image:img,year:impYear(),m:m})}).then(function(r){return r.json().then(function(j){if(r.status===401)throw new Error('Access code not accepted');if(r.status===403)throw new Error('This address is not allowed to read sheets');if(!j.ok)throw new Error(j.error||'Could not read');return j.data})})}
 function impYear(){var m=String(SC().term||'').match(/20\d\d/);return m?+m[0]:+today().slice(0,4)}
 function impDate(lbl){var m=String(lbl||'').toLowerCase().match(/(\d{1,2})\s*[-\/ ]\s*([a-z]{3})/);if(m&&IMON[m[2]])return impYear()+'-'+String(IMON[m[2]]).padStart(2,'0')+'-'+m[1].padStart(2,'0');m=String(lbl||'').match(/^(\d{4})-(\d\d)-(\d\d)$/);return m?m[0]:null}
 function impRun(files){var n=files.length,done=0;view.imp={sheets:[],busy:true,n:n,done:0};location.hash='#classes/import';impDraw();var t0=Date.now();
-  Promise.all(files.map(function(f,i){return impLoad(f).then(function(im){var up=impUp(im),tiles=IMP_TILES.map(function(t,k){return k===1?null:impTile(up,t,1800)});tiles[1]=tiles[0];im=up=null;
-      return Promise.all(tiles.map(function(t,k){return impCall(t,IMP_M[k]).catch(function(e){if(k===0)throw e;return null})}))}).then(function(r){return impBuild(f.name,r)},function(e){return{name:f.name,err:e.message||'Could not read'}})
+  Promise.all(files.map(function(f,i){return impLoad(f).then(function(im){
+      function pass(dir){var up=impUp(im,dir),tiles=IMP_TILES.map(function(t,k){return k===1?null:impTile(up,t,1800)});tiles[1]=tiles[0];
+        return Promise.all(tiles.map(function(t,k){return impCall(t,IMP_M[k]).catch(function(e){if(k===0)throw e;return null})})).then(function(r){var sh=impBuild(f.name,r);sh.rot=up.rot;return sh})}
+      /* portrait photo of a landscape page: try a quarter turn left, then right if it reads badly */
+      return pass(-1).catch(function(e){if(im.naturalHeight>im.naturalWidth&&!/limit|allowed|Too many/.test(e.message))return{bad:1};throw e}).then(function(sh){
+        var bad=sh.bad||sh.cid==null||sh.rows.filter(function(r){return r.lid!=null}).length<3;if(!bad||!(im.naturalHeight>im.naturalWidth))return sh;
+        return pass(1).then(function(s2){if(sh.bad)return s2;var g=function(x){return x.cid==null?-1:x.rows.filter(function(r){return r.lid!=null}).length};return g(s2)>g(sh)?s2:sh},function(e){if(sh.bad)throw e;return sh})})}).then(function(x){return x},function(e){return{name:f.name,err:e.message||'Could not read'}})
     .then(function(sh){sh.i=i;view.imp.done=++done;if(view.imp.busy)impProg();return sh})})).then(function(sh){view.imp={sheets:sh,busy:false,ms:Date.now()-t0};window.__impMs=view.imp.ms;window.__impSheets=sh;impDraw()})}
 function impProg(){var e=$('#impProg');if(e)e.innerHTML=impProgHtml()}
 function impProgHtml(){var I=view.imp;return '<b>Reading sheets…</b><div class="muted small" style="margin:4px 0 8px">Reading '+Math.min(I.done+1,I.n)+' of '+I.n+'</div><div class="imp-bar"><i style="width:'+Math.round(I.done/I.n*100)+'%"></i></div>'}
@@ -1547,7 +1552,7 @@ function impCard(sh,si){if(sh.err)return '<div class="card pad imp-card"><b>'+es
   var c=cls(sh.cid),on=sh.dates.filter(function(d){return d.on});
   var h='<div class="card imp-card"><div class="pad" style="padding-bottom:6px"><div class="row" style="flex-wrap:nowrap;gap:8px"><select class="input sm-in" data-isel="'+si+'" aria-label="Class" style="flex:1">'+(sh.cid==null?'<option value="">Choose class…</option>':'')+classOptions(sh.cid)+'</select></div>'+
    (sh.cid==null?'<div class="notice">Class not recognised'+(sh.label?' (read “'+esc(sh.label)+'”)':'')+' – please choose it.</div>':'')+
-   '<div class="imp-dates">'+sh.dates.map(function(d,di){return d.blankToday?'<label class="imp-d imp-today"><input type="checkbox" data-idate="'+si+':'+di+'"'+(d.on?' checked':'')+'> Today\'s column is blank – everyone present?</label>':'<label class="imp-d'+(d.unsure?' imp-uns':'')+'"><input type="checkbox" data-idate="'+si+':'+di+'"'+(d.on?' checked':'')+'> '+esc(fmtDate(d.d).slice(0,6))+(d.unsure?' <small>unsure</small>':'')+'</label>'}).join('')+(sh.dates.length?'':'<span class="muted small">No marked dates found</span>')+'</div></div>';
+   '<p class="imp-tip">Check each row, unclear marks are gold</p><div class="imp-dates">'+sh.dates.map(function(d,di){return d.blankToday?'<label class="imp-d imp-today"><input type="checkbox" data-idate="'+si+':'+di+'"'+(d.on?' checked':'')+'> Today\'s column is blank – everyone present?</label>':'<label class="imp-d'+(d.unsure?' imp-uns':'')+'"><input type="checkbox" data-idate="'+si+':'+di+'"'+(d.on?' checked':'')+'> '+esc(fmtDate(d.d).slice(0,6))+(d.unsure?' <small>unsure</small>':'')+'</label>'}).join('')+(sh.dates.length?'':'<span class="muted small">No marked dates found</span>')+'</div></div>';
   if(!c)return h+'</div>';
   h+='<div class="imp-tw"><table class="imp-t"><thead><tr><th>Learner</th>'+on.map(function(d){return '<th>'+(+d.d.slice(8))+'<small>'+MON[+d.d.slice(5,7)-1]+'</small></th>'}).join('')+'</tr></thead><tbody>';
   sh.rows.forEach(function(r,ri){var l=r.lid!=null?lrn(r.lid):null;
