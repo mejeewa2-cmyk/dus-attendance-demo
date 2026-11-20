@@ -1,11 +1,11 @@
 {
-  "gregorian": "2026-11-20",
-  "hijri": "10 Jumada al-Akhirah 1448",
-  "day": 10,
+  "gregorian": "2026-11-21",
+  "hijri": "11 Jumada al-Akhirah 1448",
+  "day": 11,
   "month": "Jumada al-Akhirah",
   "monthIndex": 6,
   "year": 1448,
-  "raw": "10 Jumada ath-thaniyah 1448",
+  "raw": "11 Jumada ath-thaniyah 1448",
   "source": "jamiat.org.za",
-  "fetchedAt": "2026-11-19T23:40:29+00:00"
+  "fetchedAt": "2026-11-20T23:14:40+00:00"
 }
